@@ -1,0 +1,173 @@
+Plot,Species,Treatment,Numberof Groups,Group Code(34FLW),Number of species
+2,Lesca,B,1,10,1
+3,Asctu Liaas Monfi Panvi Solri,D,2,1100,4
+5,Andge,B,1,1000,1
+6,Panvi Schsc,C,1,1000,2
+9,Achmi Agrsm Amoca Andge Asctu Elyca Lesca Liaas Luppe Monfi Panvi Petpu Poapr Quema Schsc Solri Sornu,F,5,11111,16
+11,Achmi,B,1,100,1
+12,Achmi Koecr Luppe Monfi Petca Petvi Poapr Schsc Solri Sornu,E,4,11110,8
+14,Asctu Liaas,C,1,100,2
+15,Agrsm Elyca Monfi Petca Petpu Petvi Poapr Queel Quema Solri,E,4,10111,8
+16,Asctu,B,1,100,1
+20,Amoca,B,1,10,1
+22,Agrsm Asctu Elyca Koecr Liaas Monfi Petca Petvi Quema Solri,E,4,10111,8
+24,Asctu Elyca Panvi Schsc,D,3,11100,4
+26,Agrsm Elyca Petpu Sornu,D,3,11010,4
+27,Achmi Agrsm Amoca Asctu Koecr Lesca Liaas Luppe Monfi Panvi Petpu Poapr Queel Quema Schsc Solri Sornu,F,5,11111,16
+28,Lesca Petpu Queel Quema,D,2,11,4
+29,Lesca,B,1,10,1
+30,Achmi Agrsm Amoca Andge Asctu Elyca Koecr Liaas Luppe Monfi Panvi Poapr Queel Quema Schsc Solri Sornu,F,5,11111,16
+31,Schsc,B,1,1000,1
+32,Andge Queel,C,2,1001,2
+33,Agrsm Andge Liaas Petca Petvi,D,4,11110,4
+34,Achmi Agrsm Amoca Andge Asctu Elyca Koecr Luppe Monfi Panvi Petpu Poapr Queel Quema Schsc Solri Sornu,F,5,11111,16
+35,Agrsm Amoca Andge Asctu Elyca Koecr Lesca Liaas Luppe Monfi Panvi Petpu Queel Quema Schsc Solri Sornu,F,5,11111,16
+44,Asctu Panvi Petca Petpu Petvi,D,3,1110,4
+45,Andge Liaas Petpu Quema,D,4,1111,4
+46,Achmi Agrsm Amoca Andge Asctu Elyca Koecr Liaas Luppe Monfi Panvi Petpu Poapr Queel Quema Schsc Solri,F,5,11111,16
+48,Koecr Lesca,C,2,10010,2
+50,Achmi Elyca Koecr Lesca Petca Petpu Petvi Poapr Quema,E,4,10111,8
+53,Lesca Poapr Quema Sornu,D,4,11011,4
+56,Luppe Schsc,C,2,1010,2
+57,Achmi Agrsm Koecr Lesca Monfi Petca Petvi Poapr Schsc Solri,E,4,11110,8
+58,Andge Monfi Poapr Solri Sornu,D,3,11100,4
+62,Elyca Lesca Petca Petvi Quema,D,3,10011,4
+67,Agrsm Koecr Luppe Monfi Petca Petvi Queel Quema Solri Sornu,E,5,11111,8
+68,Achmi Agrsm Asctu Elyca Koecr Lesca Liaas Luppe Monfi Panvi Petpu Poapr Queel Quema Schsc Solri Sornu,F,5,11111,16
+69,Achmi,B,1,100,1
+70,Andge Asctu Luppe Schsc,D,3,1110,4
+73,Monfi Queel Solri,C,2,101,2
+74,Achmi Agrsm Asctu Elyca Koecr Petca Petvi Quema Sornu,E,5,11111,8
+75,Asctu Panvi,C,2,1100,2
+81,Achmi Agrsm Elyca Lesca Liaas Petpu Poapr Schsc,E,4,11110,8
+82,Achmi Amoca Andge Asctu Elyca Lesca Liaas Luppe Monfi Panvi Petpu Poapr Queel Quema Schsc Solri Sornu,F,5,11111,16
+83,Luppe,B,1,10,1
+87,Sornu,B,1,1000,1
+89,Achmi Agrsm Amoca Andge Asctu Elyca Koecr Liaas Luppe Panvi Petpu Poapr Queel Quema Schsc Sornu,F,5,11111,16
+92,Sornu,B,1,1000,1
+93,Agrsm Koecr Luppe Petpu,D,2,10010,4
+94,Lesca,B,1,10,1
+98,Achmi Agrsm Andge Koecr Luppe Panvi Poapr Queel,E,5,11111,8
+104,Achmi Elyca Koecr Liaas Luppe Petpu Queel Schsc,E,5,11111,8
+107,Agrsm Amoca Andge Asctu Elyca Koecr Lesca Liaas Luppe Monfi Panvi Petpu Poapr Queel Quema Schsc Solri,F,5,11111,16
+108,Achmi Agrsm Amoca Andge Elyca Koecr Liaas Luppe Monfi Panvi Petpu Poapr Queel Quema Schsc Solri Sornu,F,5,11111,16
+109,Andge,B,1,1000,1
+110,Elyca Lesca Luppe Panvi,D,3,11010,4
+111,Achmi Agrsm Lesca Monfi Petca Petvi Poapr Queel Quema Solri,E,4,10111,8
+115,Agrsm Andge Asctu Elyca Koecr Monfi Poapr Queel Solri,E,4,11101,8
+117,Asctu Luppe,C,2,110,2
+118,Achmi Agrsm Andge Asctu Koecr Monfi Petpu Quema Solri,E,5,11111,8
+125,Petpu Schsc,C,2,1010,2
+126,Bargr,A,0,0,0
+127,Lesca Quema,C,2,11,2
+129,Liaas,B,1,100,1
+130,Achmi Asctu Elyca Liaas Panvi Petpu Quema Schsc,E,5,11111,8
+133,Lesca Monfi Petca Petvi Schsc Solri,D,3,1110,4
+135,Schsc,B,1,1000,1
+136,Achmi Agrsm Amoca Andge Asctu Elyca Lesca Liaas Luppe Monfi Panvi Petpu Queel Quema Schsc Solri Sornu,F,5,11111,16
+137,Amoca,B,1,10,1
+138,Achmi Elyca Koecr Liaas,D,2,10100,4
+139,Agrsm Elyca Koecr Lesca,D,2,10010,4
+142,Koecr,B,1,10000,1
+146,Achmi Andge Lesca Monfi Panvi Poapr Queel Quema Solri,E,5,11111,8
+149,Monfi Petca Petvi Quema Solri Sornu,D,4,1111,4
+151,Queel,B,1,1,1
+153,Agrsm,B,1,10000,1
+156,Achmi Agrsm Amoca Andge Asctu Elyca Koecr Lesca Liaas Monfi Panvi Petpu Queel Quema Schsc Solri Sornu,F,5,11111,16
+157,Agrsm Koecr,C,1,10000,2
+160,Achmi Agrsm Amoca Andge Asctu Koecr Lesca Liaas Luppe Monfi Panvi Petpu Queel Quema Schsc Solri Sornu,F,5,11111,16
+161,Quema,B,1,1,1
+163,Sornu,B,1,1000,1
+164,Agrsm Amoca Andge Asctu Elyca Koecr Lesca Liaas Monfi Panvi Petpu Poapr Queel Quema Schsc Solri Sornu,F,5,11111,16
+165,Poapr Sornu,C,2,11000,2
+166,Bargr,A,0,0,0
+167,Liaas,B,1,100,1
+168,Andge Koecr,C,2,11000,2
+169,Achmi Agrsm Andge Asctu Elyca Koecr Lesca Liaas Luppe Monfi Panvi Petpu Poapr Queel Quema Solri Sornu,F,5,11111,16
+170,Achmi Asctu Elyca Koecr Monfi Petca Petpu Petvi Queel Solri,E,4,10111,8
+171,Koecr Luppe,C,2,10010,2
+174,Achmi Agrsm Amoca Asctu Elyca Koecr Lesca Liaas Luppe Monfi Panvi Petpu Queel Quema Schsc Solri Sornu,F,5,11111,16
+175,Luppe Sornu,C,2,1010,2
+176,Agrsm Liaas Panvi Poapr,D,3,11100,4
+177,Andge Asctu Koecr Liaas Petca Petvi Quema Schsc Sornu,E,5,11111,8
+178,Achmi Agrsm Elyca Koecr Liaas Monfi Panvi Schsc Solri,E,3,11100,8
+185,Petpu,B,1,10,1
+186,Achmi Agrsm Amoca Asctu Elyca Koecr Lesca Luppe Monfi Panvi Petpu Poapr Queel Quema Schsc Solri Sornu,F,5,11111,16
+189,Queel Schsc,C,2,1001,2
+190,Lesca Liaas Petpu Quema,D,3,111,4
+193,Andge Luppe,C,2,1010,2
+197,Asctu Panvi,C,2,1100,2
+199,Luppe Queel Quema Schsc,D,3,1011,4
+201,Lesca Petpu Queel Sornu,D,3,1011,4
+202,Achmi Agrsm Amoca Andge Asctu Elyca Koecr Lesca Liaas Luppe Monfi Panvi Petpu Poapr Schsc Solri Sornu,F,4,11110,16
+205,Petpu,B,1,10,1
+206,Agrsm Andge Asctu Lesca Luppe Monfi Poapr Solri Sornu,E,4,11110,8
+208,Achmi Agrsm Koecr Lesca Luppe Panvi Poapr Schsc,E,4,11110,8
+210,Achmi Elyca Koecr Lesca Liaas Luppe Poapr Schsc,E,4,11110,8
+211,Monfi Petca Petvi Solri,C,2,110,2
+213,Achmi Andge Koecr Lesca Petca Petvi Poapr Quema Schsc,E,5,11111,8
+220,Achmi Agrsm Amoca Andge Asctu Koecr Lesca Luppe Monfi Panvi Petpu Poapr Queel Quema Schsc Solri Sornu,F,5,11111,16
+221,Queel Quema,C,1,1,2
+223,Koecr Liaas Poapr Queel,D,3,10101,4
+224,Achmi Sornu,C,2,1100,2
+225,Elyca Petpu Queel Schsc,D,4,11011,4
+227,Agrsm Amoca Andge Asctu Elyca Koecr Lesca Liaas Luppe Monfi Panvi Petpu Poapr Quema Schsc Solri Sornu,F,5,11111,16
+229,Andge Petpu Poapr Schsc,D,3,11010,4
+230,Panvi,B,1,1000,1
+232,Koecr Luppe Monfi Panvi Petca Petvi Queel Schsc Solri Sornu,E,5,11111,8
+233,Liaas Petpu Poapr Queel,D,4,10111,4
+234,Elyca Luppe,C,2,10010,2
+235,Achmi Agrsm Amoca Andge Asctu Lesca Liaas Luppe Monfi Panvi Petpu Poapr Queel Quema Schsc Solri Sornu,F,5,11111,16
+236,Lesca Panvi,C,2,1010,2
+237,Poapr,B,1,10000,1
+239,Achmi Agrsm Amoca Andge Asctu Elyca Koecr Lesca Luppe Monfi Petpu Poapr Queel Quema Schsc Solri Sornu,F,5,11111,16
+242,Agrsm Amoca Andge Asctu Elyca Koecr Liaas Luppe Monfi Panvi Petpu Poapr Queel Quema Schsc Solri Sornu,F,5,11111,16
+244,Bargr,A,0,0,0
+248,Bargr,A,0,0,0
+253,Achmi Agrsm Amoca Andge Asctu Koecr Lesca Liaas Luppe Monfi Panvi Petpu Poapr Quema Schsc Solri Sornu,F,5,11111,16
+255,Queel,B,1,1,1
+256,Agrsm,B,1,10000,1
+257,Achmi Agrsm Amoca Elyca Koecr Lesca Liaas Luppe Monfi Panvi Petpu Poapr Queel Quema Schsc Solri Sornu,F,5,11111,16
+259,Lesca Schsc,C,2,1010,2
+265,Luppe,B,1,10,1
+266,Achmi Agrsm Andge Petca Petpu Petvi Quema Schsc Sornu,E,5,11111,8
+267,Liaas,B,1,100,1
+268,Koecr,B,1,10000,1
+272,Petca Petvi Queel,C,2,11,2
+273,Achmi Andge Asctu Elyca Koecr Lesca Liaas Luppe Monfi Panvi Petpu Poapr Queel Quema Schsc Solri Sornu,F,5,11111,16
+278,Elyca Sornu,C,2,11000,2
+280,Schsc,B,1,1000,1
+282,Sornu,B,1,1000,1
+283,Achmi Agrsm Andge Asctu Elyca Panvi Schsc Sornu,E,3,11100,8
+286,Lesca Poapr Schsc Sornu,D,3,11010,4
+287,Achmi Elyca Monfi Schsc Solri,D,3,11100,4
+290,Monfi Solri,B,1,100,1
+291,Petpu,B,1,10,1
+292,Andge Elyca Koecr Lesca Luppe Petca Petvi Poapr Sornu,E,3,11010,8
+293,Andge Asctu Lesca Luppe Petpu Queel Quema Schsc,E,4,1111,8
+296,Quema,B,1,1,1
+299,Agrsm Amoca Andge Asctu Elyca Koecr Lesca Liaas Luppe Monfi Panvi Petpu Poapr Quema Schsc Solri Sornu,F,5,11111,16
+300,Luppe Panvi,C,2,1010,2
+301,Achmi Agrsm Amoca Andge Asctu Elyca Koecr Lesca Liaas Luppe Monfi Panvi Poapr Quema Schsc Solri Sornu,F,5,11111,16
+302,Liaas Luppe Monfi Quema Solri,D,3,111,4
+303,Achmi Agrsm Koecr Liaas Luppe Monfi Petca Petvi Poapr Solri,E,3,10110,8
+304,Agrsm Koecr,C,1,10000,2
+307,Asctu Luppe Monfi Panvi Petpu Queel Quema Schsc Solri,E,4,1111,8
+308,Asctu,B,1,100,1
+311,Koecr Panvi,C,2,11000,2
+313,Achmi Koecr Lesca Liaas Luppe Petca Petpu Petvi Quema,E,4,10111,8
+318,Achmi Agrsm Amoca Andge Asctu Elyca Koecr Lesca Luppe Monfi Panvi Poapr Queel Quema Schsc Solri Sornu,F,5,11111,16
+322,Queel Schsc,C,2,1001,2
+324,Elyca Poapr,C,1,10000,2
+325,Koecr Monfi Panvi Petpu Solri,D,4,11110,4
+328,Achmi Agrsm Amoca Andge Asctu Elyca Koecr Lesca Liaas Luppe Monfi Panvi Petpu Poapr Quema Schsc Solri,F,5,11111,16
+329,Achmi Agrsm Amoca Andge Elyca Koecr Lesca Luppe Monfi Panvi Petpu Poapr Queel Quema Schsc Solri Sornu,F,5,11111,16
+330,Andge Liaas,C,2,1100,2
+331,Achmi Agrsm Amoca Andge Asctu Elyca Koecr Lesca Liaas Luppe Monfi Panvi Petpu Queel Quema Schsc Solri,F,5,11111,16
+333,Elyca,B,1,10000,1
+334,Elyca Sornu,C,2,11000,2
+335,Koecr Petca Petvi,C,2,10010,2
+336,Achmi Agrsm Amoca Andge Asctu Elyca Koecr Lesca Liaas Luppe Monfi Panvi Queel Quema Schsc Solri Sornu,F,5,11111,16
+338,Monfi Solri,B,1,100,1
+339,Achmi Amoca Andge Asctu Elyca Koecr Lesca Liaas Luppe Monfi Panvi Petpu Poapr Queel Quema Schsc Solri,F,5,11111,16
+342,Luppe Monfi Solri,C,2,110,2
