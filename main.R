@@ -33,7 +33,7 @@ ssoutlst<-NULL #list for output total data
 centermeans<-TRUE #center to true E120 monoculture means?
 bootr2<-TRUE #get bootstrapped estimates for R2?
 dotradeofftest<-"saved" #get p-values for tradeoff slopes. Value "saved" loads an existing file
-nrep<-100#20000 #number of iterations
+nrep<-1000#20000 #number of iterations
 adjustS<-TRUE #use 1994 total soil C to adjust among-plot variability?
 
 ############################################################

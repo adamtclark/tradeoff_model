@@ -230,7 +230,7 @@ ssres<-sum((smdat$plottot-obsdat$obs)^2, na.rm=T)
 sstot<-sum((mean(obsdat$obs, na.rm=T)-obsdat$obs)^2, na.rm=T) 
 rsq<-1-ssres/sstot  
 r<-"R"
-rd<-paste(" =", round(rsq, 3))
+rd<-paste(" =", round(rsq, 2))
 text(1.5, 210, bquote(.(r[1])^2 ~ .(rd[1])), cex=1.5)
 
 ####################################
@@ -296,7 +296,7 @@ for(i in c(2,4,8,16)) {
   sstot<-sum((mean(abund_obs[3,], na.rm=T)-abund_obs[3,])^2, na.rm=T) 
   rsq<-1-ssres/sstot  
   r<-"R"
-  rd<-paste(" =", round(rsq, 3))
+  rd<-paste(" =", round(rsq, 2))
   text(6, 90, bquote(.(r[1])^2 ~ .(rd[1])), cex=1.2)
   n<-n+1
 }
