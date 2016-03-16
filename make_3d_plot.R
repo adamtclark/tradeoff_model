@@ -333,7 +333,7 @@ if(dotradeofftest==TRUE) { #set to TRUE to calculate p-values for slopes
   pardat<-read.csv("data/data_products/tradeoff_boot_pvalues.csv")
   parameter_intervals<-apply(pardat, 2, function(x) quantile(x, c(0.025, 0.5, 0.975)))
   #p-value testing for negative relationship between all traits
-  pvale<-1-sum((sign(pardat[,1])==sign(pardat[,2]))&(sign(pardat[,3])==sign(pardat[,4])))/nrow(pardat)
+  pvale<-1-sum((sign(pardat[,2])==sign(pardat[,3]))&(sign(pardat[,3])==sign(pardat[,4])))/nrow(pardat)
   print(paste("3-way tradeoff p-value:", pvale))
 }
 
