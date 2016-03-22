@@ -231,7 +231,7 @@ sstot<-sum((mean(log10(obsdat$obs), na.rm=T)-log10(obsdat$obs))^2, na.rm=T)
 rsq<-1-ssres/sstot  
 r<-"R"
 rd<-paste(" =", round(rsq, 2))
-text(1.5, 210, bquote(.(r[1])^2 ~ .(rd[1])), cex=1.5)
+#text(1.5, 210, bquote(.(r[1])^2 ~ .(rd[1])), cex=1.5)
 
 ####################################
 #plot abundance distributions
@@ -244,12 +244,12 @@ abundfun<-function(x) {
 spxlst<-(1:maxsp)
 n<-1
 for(i in c(2,4,8,16)) {
-  plot(c(min(spxlst), max(spxlst)), c(0.1, 100), col="blue", lwd=2,
+  plot(c(min(spxlst), max(spxlst)), c(0.3, 110), col="blue", lwd=2,
        xlab="", ylab="", axes=F, type="n", log="xy",
        cex.lab=1.2,
        main=paste("Planted Richness =", i))
-  abline(h=c(0.1, 0.5, 5, 50, 100), v=spxlst, col="grey")
-  axis(2, at=c(0.1, 0.5, 5, 50, 100), cex.axis=0.8); axis(1, at=spxlst, spxlst, cex.axis=0.8); box()
+  abline(h=c(0.1, 0.5, 5, 20, 100), v=spxlst, col="grey")
+  axis(2, at=c(0.1, 0.5, 5, 20, 100), cex.axis=0.8); axis(1, at=spxlst, spxlst, cex.axis=0.8); box()
   put.fig.letter(label = c("B.", "C.", "D.", "E.")[n],
                  location = "topleft", cex=2, x=0.06, y=0.95, xpd=T)
   
@@ -297,7 +297,7 @@ for(i in c(2,4,8,16)) {
   rsq<-1-ssres/sstot  
   r<-"R"
   rd<-paste(" =", round(rsq, 2))
-  text(6, 90, bquote(.(r[1])^2 ~ .(rd[1])), cex=1.2)
+  #text(6, 90, bquote(.(r[1])^2 ~ .(rd[1])), cex=1.2)
   n<-n+1
 }
 
