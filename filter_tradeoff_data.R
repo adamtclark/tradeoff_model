@@ -94,8 +94,6 @@ write.csv(dattot, "data/data_products/filtered_dattot.csv", row.names=F)
 datlowN<-dattot
 
 require(lme4)
-datlowN<-datlowN[datlowN$age>2,]
-
 mno3<-lmer(log(no3)~-1+monoculture+(1|exp/plot/subplot), unique(datlowN[is.finite(log(datlowN$no3)),c("exp", "plot", "subplot", "year", "month", "monoculture", "no3")]))
 no3<-summary(mno3)$coefficients[,1]
 sd_no3<-summary(mno3)$coefficients[,2]

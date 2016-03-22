@@ -204,9 +204,9 @@ p1<-10^(log10(snums)+0.02)
 
 plot(snums, smdat$plottot, col="blue", lwd=2, ylim=c(50, 225),
      xlab="Planted Richness", ylab=expression(paste("Aboveground Biomass, g m"^-2)), axes=F, type="n",
-     cex.lab=1.2, log="x")
+     cex.lab=1.2, log="xy")
 abline(h=seq(0, 250, by=25), v=snums, col="grey")
-axis(2, cex.axis=1.5); axis(1, at=snums, c(1, 2, 4, 8, 16), cex.axis=1.5); box()
+axis(2, at=c(50, 75, 100, 150, 200), cex.axis=1.5); axis(1, at=snums, c(1, 2, 4, 8, 16), cex.axis=1.5); box()
 
 lines(p1, obsdat$obs, col="black", lwd=4)
 lines(p1, obsdat$obs, col="white", lwd=2)
@@ -226,8 +226,8 @@ lw<-10^(log10(smdat$plottot)-smdatsd$plottot/sqrt(obsdatsd_n$obs))
 segments(p2, hi, p2, lw, lwd=3)
 
 #Plot R-squared
-ssres<-sum((smdat$plottot-obsdat$obs)^2, na.rm=T)
-sstot<-sum((mean(obsdat$obs, na.rm=T)-obsdat$obs)^2, na.rm=T) 
+ssres<-sum((log10(smdat$plottot)-log10(obsdat$obs))^2, na.rm=T)
+sstot<-sum((mean(log10(obsdat$obs), na.rm=T)-log10(obsdat$obs))^2, na.rm=T) 
 rsq<-1-ssres/sstot  
 r<-"R"
 rd<-paste(" =", round(rsq, 2))
@@ -245,11 +245,11 @@ spxlst<-(1:maxsp)
 n<-1
 for(i in c(2,4,8,16)) {
   plot(c(min(spxlst), max(spxlst)), c(0.1, 100), col="blue", lwd=2,
-       xlab="", ylab="", axes=F, type="n", log="x",
+       xlab="", ylab="", axes=F, type="n", log="xy",
        cex.lab=1.2,
        main=paste("Planted Richness =", i))
-  abline(h=seq(0, 100, by=20), v=spxlst, col="grey")
-  axis(2, cex.axis=0.8, cex.axis=1.5); axis(1, at=spxlst, spxlst, cex.axis=0.8, cex.axis=1.5); box()
+  abline(h=c(0.1, 0.5, 5, 50, 100), v=spxlst, col="grey")
+  axis(2, at=c(0.1, 0.5, 5, 50, 100), cex.axis=0.8); axis(1, at=spxlst, spxlst, cex.axis=0.8); box()
   put.fig.letter(label = c("B.", "C.", "D.", "E.")[n],
                  location = "topleft", cex=2, x=0.06, y=0.95, xpd=T)
   
@@ -279,8 +279,8 @@ for(i in c(2,4,8,16)) {
   hi[hi==0 & (1:length(hi))>i]<-NA
   lw[lw==0 & (1:length(lw))>i]<-NA
   
-  sb<-is.finite((hi))&is.finite((lw))
-  polygon(c(spxlst[sb], rev(spxlst[sb])), c(hi[sb], rev(lw[sb])), col=1, border=NA)
+  sbS<-is.finite(log(hi))&is.finite(log(lw))
+  polygon(c(spxlst[sbS], rev(spxlst[sbS])), c(hi[sbS], rev(lw[sbS])), col=1, border=NA)
   
   #observed
   hi<-abund_obs[3,]+(abund_obs[4,]-abund_obs[3,])/sqrt(obsdatsd_n$obs[obsdatsd_n$sr==i])
@@ -288,12 +288,12 @@ for(i in c(2,4,8,16)) {
   hi[hi==0 & (1:length(hi))>i]<-NA
   lw[lw==0 & (1:length(lw))>i]<-NA
   
-  sb<-is.finite((hi))&is.finite((lw))
-  polygon(c(spxlst[sb], rev(spxlst[sb])), c(hi[sb], rev(lw[sb])), col=adjustcolor("white", alpha.f = 0.5), border="black")
+  sbO<-is.finite(log(hi))&is.finite(log(lw))
+  polygon(c(spxlst[sbO], rev(spxlst[sbO])), c(hi[sbO], rev(lw[sbO])), col=adjustcolor("white", alpha.f = 0.5), border="black")
   
   #Plot R-squred
-  ssres<-sum((abundqt[3,]-abund_obs[3,])^2, na.rm=T)
-  sstot<-sum((mean(abund_obs[3,], na.rm=T)-abund_obs[3,])^2, na.rm=T) 
+  ssres<-sum((log10(abundqt[3,sbS&sbO])-log10(abund_obs[3,sbS&sbO]))^2, na.rm=T)
+  sstot<-sum((mean(log10(abund_obs[3,sbS&sbO]), na.rm=T)-log10(abund_obs[3,sbS&sbO]))^2, na.rm=T) 
   rsq<-1-ssres/sstot  
   r<-"R"
   rd<-paste(" =", round(rsq, 2))
