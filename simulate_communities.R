@@ -226,12 +226,18 @@ lw<-10^(log10(smdat$plottot)-smdatsd$plottot/sqrt(obsdatsd_n$obs))
 segments(p2, hi, p2, lw, lwd=3)
 
 #Plot R-squared
-ssres<-sum((log10(smdat$plottot)-log10(obsdat$obs))^2, na.rm=T)
-sstot<-sum((mean(log10(obsdat$obs), na.rm=T)-log10(obsdat$obs))^2, na.rm=T) 
-rsq<-1-ssres/sstot  
+lmd<-lmodel2(log10(obsdat$obs)~log10(smdat$plottot), range.y="interval", range.x="interval", nperm=nrep)
+
+rsqest<-lmd$rsquare
+
 r<-"R"
+p<-"p"
+rd<-paste(" =", round(rsqest, 2))
+pv<-paste(" <", ceiling(lmd$regression.results[4,5]*1000)/1000)
+
 rd<-paste(" =", round(rsq, 2))
-#text(1.5, 210, bquote(.(r[1])^2 ~ .(rd[1])), cex=1.5)
+text(2, 200, bquote(.(r[1])^2 ~ .(rd[1])), cex=1.2)
+text(2, 180, bquote(.(p[1]) ~ .(pv[1])), cex=1.2)
 
 ####################################
 #plot abundance distributions
@@ -241,15 +247,16 @@ abundfun<-function(x) {
 }
 
 
-spxlst<-(1:maxsp)
+spxlst<-c(1,2,4,8,16)
+spxseq<-seq(1:maxsp)
 n<-1
 for(i in c(2,4,8,16)) {
-  plot(c(min(spxlst), max(spxlst)), c(0.3, 110), col="blue", lwd=2,
+  plot(c(min(spxlst), max(spxlst)), c(0.1, 110), col="blue", lwd=2,
        xlab="", ylab="", axes=F, type="n", log="xy",
        cex.lab=1.2,
        main=paste("Planted Richness =", i))
-  abline(h=c(0.1, 0.5, 5, 20, 100), v=spxlst, col="grey")
-  axis(2, at=c(0.1, 0.5, 5, 20, 100), cex.axis=0.8); axis(1, at=spxlst, spxlst, cex.axis=0.8); box()
+  abline(h=c(0.1, 1, 10, 100), v=spxlst, col="grey")
+  axis(2, at=c(0.1, 1, 10, 100), cex.axis=1); axis(1, at=spxlst, spxlst, cex.axis=1); box()
   put.fig.letter(label = c("B.", "C.", "D.", "E.")[n],
                  location = "topleft", cex=2, x=0.06, y=0.95, xpd=T)
   
@@ -280,7 +287,7 @@ for(i in c(2,4,8,16)) {
   lw[lw==0 & (1:length(lw))>i]<-NA
   
   sbS<-is.finite(log(hi))&is.finite(log(lw))
-  polygon(c(spxlst[sbS], rev(spxlst[sbS])), c(hi[sbS], rev(lw[sbS])), col=1, border=NA)
+  polygon(c(spxseq[sbS], rev(spxseq[sbS])), c(hi[sbS], rev(lw[sbS])), col=1, border=NA)
   
   #observed
   hi<-abund_obs[3,]+(abund_obs[4,]-abund_obs[3,])/sqrt(obsdatsd_n$obs[obsdatsd_n$sr==i])
@@ -289,15 +296,20 @@ for(i in c(2,4,8,16)) {
   lw[lw==0 & (1:length(lw))>i]<-NA
   
   sbO<-is.finite(log(hi))&is.finite(log(lw))
-  polygon(c(spxlst[sbO], rev(spxlst[sbO])), c(hi[sbO], rev(lw[sbO])), col=adjustcolor("white", alpha.f = 0.5), border="black")
+  polygon(c(spxseq[sbO], rev(spxseq[sbO])), c(hi[sbO], rev(lw[sbO])), col=adjustcolor("white", alpha.f = 0.5), border="black")
   
   #Plot R-squred
-  ssres<-sum((log10(abundqt[3,sbS&sbO])-log10(abund_obs[3,sbS&sbO]))^2, na.rm=T)
-  sstot<-sum((mean(log10(abund_obs[3,sbS&sbO]), na.rm=T)-log10(abund_obs[3,sbS&sbO]))^2, na.rm=T) 
-  rsq<-1-ssres/sstot  
+  lmd<-lmodel2(log10(abund_obs[3,sbS&sbO])~log10(abundqt[3,sbS&sbO]), range.y="interval", range.x="interval", nperm=nrep)
+  
+  rsqest<-lmd$rsquare
+  
   r<-"R"
-  rd<-paste(" =", round(rsq, 2))
-  #text(6, 90, bquote(.(r[1])^2 ~ .(rd[1])), cex=1.2)
+  p<-"p"
+  rd<-paste(" =", round(rsqest, 2))
+  pv<-paste(" <", ceiling(lmd$regression.results[4,5]*1000)/1000)
+  
+  text(4, 90, bquote(.(r[1])^2 ~ .(rd[1])), cex=1.2, pos=4)
+  text(4, 40, bquote(.(p[1]) ~ .(pv[1])), cex=1.2, pos=4)
   n<-n+1
 }
 

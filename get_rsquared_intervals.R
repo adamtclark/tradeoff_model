@@ -62,9 +62,9 @@ collst<-c("dimgrey", "black")
 rsuse<-rsqlst_1
 colpos<-1
 sppos<-1
-segments(1:6+adj[sppos], rsuse[psadj,]$rsq, 1:6+adj[sppos], rsuse[psadj+4,]$rsq, col=collst[colpos], lwd=1.5)
-segments(1:6+adj[sppos], rsuse[psadj+1,]$rsq, 1:6+adj[sppos], rsuse[psadj+3,]$rsq, col=collst[colpos], lwd=3)
-segments(1:6+adj[sppos]-0.05, rsuse[psadj+2,]$rsq, 1:6+adj[sppos]+0.05, rsuse[psadj+2,]$rsq, col=collst[colpos], lwd=3)
+segments(1:6+adj[sppos], rsuse[psadj,]$rsq, 1:6+adj[sppos], rsuse[psadj+4,]$rsq, col=collst[colpos], lwd=1.5, lend=2)
+segments(1:6+adj[sppos], rsuse[psadj+1,]$rsq, 1:6+adj[sppos], rsuse[psadj+3,]$rsq, col=collst[colpos], lwd=3, lend=2)
+segments(1:6+adj[sppos]-0.05, rsuse[psadj+2,]$rsq, 1:6+adj[sppos]+0.05, rsuse[psadj+2,]$rsq, col=collst[colpos], lwd=3, lend=2)
 
 lines(1:4+adj[sppos], rsuse[psadj+2,]$rsq[1:4], col=collst[1], lwd=1.5, lty=1)
 
@@ -72,9 +72,9 @@ lines(1:4+adj[sppos], rsuse[psadj+2,]$rsq[1:4], col=collst[1], lwd=1.5, lty=1)
 rsuse<-rsqlst_2
 colpos<-2
 sppos<-2
-segments(1:6+adj[sppos], rsuse[psadj,]$rsq, 1:6+adj[sppos], rsuse[psadj+4,]$rsq, col=collst[colpos], lwd=1.5)
-segments(1:6+adj[sppos], rsuse[psadj+1,]$rsq, 1:6+adj[sppos], rsuse[psadj+3,]$rsq, col=collst[colpos], lwd=3)
-segments(1:6+adj[sppos]-0.05, rsuse[psadj+2,]$rsq, 1:6+adj[sppos]+0.05, rsuse[psadj+2,]$rsq, col=collst[colpos], lwd=3)
+segments(1:6+adj[sppos], rsuse[psadj,]$rsq, 1:6+adj[sppos], rsuse[psadj+4,]$rsq, col=collst[colpos], lwd=1.5, lend=2)
+segments(1:6+adj[sppos], rsuse[psadj+1,]$rsq, 1:6+adj[sppos], rsuse[psadj+3,]$rsq, col=collst[colpos], lwd=3, lend=2)
+segments(1:6+adj[sppos]-0.05, rsuse[psadj+2,]$rsq, 1:6+adj[sppos]+0.05, rsuse[psadj+2,]$rsq, col=collst[colpos], lwd=3, lend=2)
 
 lines(1:4+adj[sppos], rsuse[psadj+2,]$rsq[1:4], col=collst[2], lwd=1.5)
 p_r2_species_level<-recordPlot()
@@ -126,9 +126,9 @@ collst<-c("dimgrey", "black")
 rsuse<-rsqlst_1
 colpos<-1
 sppos<-1
-segments(1:6+adj[sppos], rsuse[psadj,]$rsq, 1:6+adj[sppos], rsuse[psadj+4,]$rsq, col=collst[colpos], lwd=1.5)
-segments(1:6+adj[sppos], rsuse[psadj+1,]$rsq, 1:6+adj[sppos], rsuse[psadj+3,]$rsq, col=collst[colpos], lwd=3)
-segments(1:6+adj[sppos]-0.05, rsuse[psadj+2,]$rsq, 1:6+adj[sppos]+0.05, rsuse[psadj+2,]$rsq, col=collst[colpos], lwd=3)
+segments(1:6+adj[sppos], rsuse[psadj,]$rsq, 1:6+adj[sppos], rsuse[psadj+4,]$rsq, col=collst[colpos], lwd=1.5, lend=2)
+segments(1:6+adj[sppos], rsuse[psadj+1,]$rsq, 1:6+adj[sppos], rsuse[psadj+3,]$rsq, col=collst[colpos], lwd=3, lend=2)
+segments(1:6+adj[sppos]-0.05, rsuse[psadj+2,]$rsq, 1:6+adj[sppos]+0.05, rsuse[psadj+2,]$rsq, col=collst[colpos], lwd=3, lend=2)
 
 lines(1:4+adj[sppos], rsuse[psadj+2,]$rsq[1:4], col=collst[1], lwd=1.5, lty=1)
 
@@ -136,9 +136,9 @@ lines(1:4+adj[sppos], rsuse[psadj+2,]$rsq[1:4], col=collst[1], lwd=1.5, lty=1)
 rsuse<-rsqlst_2
 colpos<-2
 sppos<-2
-segments(1:6+adj[sppos], rsuse[psadj,]$rsq, 1:6+adj[sppos], rsuse[psadj+4,]$rsq, col=collst[colpos], lwd=1.5)
-segments(1:6+adj[sppos], rsuse[psadj+1,]$rsq, 1:6+adj[sppos], rsuse[psadj+3,]$rsq, col=collst[colpos], lwd=3)
-segments(1:6+adj[sppos]-0.05, rsuse[psadj+2,]$rsq, 1:6+adj[sppos]+0.05, rsuse[psadj+2,]$rsq, col=collst[colpos], lwd=3)
+segments(1:6+adj[sppos], rsuse[psadj,]$rsq, 1:6+adj[sppos], rsuse[psadj+4,]$rsq, col=collst[colpos], lwd=1.5, lend=2)
+segments(1:6+adj[sppos], rsuse[psadj+1,]$rsq, 1:6+adj[sppos], rsuse[psadj+3,]$rsq, col=collst[colpos], lwd=3, lend=2)
+segments(1:6+adj[sppos]-0.05, rsuse[psadj+2,]$rsq, 1:6+adj[sppos]+0.05, rsuse[psadj+2,]$rsq, col=collst[colpos], lwd=3, lend=2)
 
 lines(1:4+adj[sppos], rsuse[psadj+2,]$rsq[1:4], col=collst[2], lwd=1.5)
 
