@@ -2,6 +2,7 @@
 ###run simulation
 ########################################################
 filterbyfg<-TRUE
+printr2<-FALSE #calculate R2 and p-values for fits?
 
 #load data
 trdat<-read.csv("data/data_products/filtered_tradeoff_data.csv")
@@ -225,19 +226,42 @@ hi<-10^(log10(smdat$plottot)+smdatsd$plottot/sqrt(obsdatsd_n$obs))
 lw<-10^(log10(smdat$plottot)-smdatsd$plottot/sqrt(obsdatsd_n$obs))
 segments(p2, hi, p2, lw, lwd=3)
 
-#Plot R-squared
-#lmd<-lmodel2(log10(obsdat$obs)~log10(smdat$plottot), range.y="interval", range.x="interval", nperm=nrep)
-
-#rsqest<-lmd$rsquare
-
-#r<-"R"
-#p<-"p"
-#rd<-paste(" =", round(rsqest, 2))
-#pv<-paste(" <", ceiling(lmd$regression.results[4,5]*1000)/1000)
-
-#rd<-paste(" =", round(rsq, 2))
-#text(2, 200, bquote(.(r[1])^2 ~ .(rd[1])), cex=1.2)
-#text(2, 180, bquote(.(p[1]) ~ .(pv[1])), cex=1.2)
+#Calculate and plot R-squared/p-values
+if(printr2) {
+  bootrsquarelst<-numeric(nrep)
+  bootslplst<-numeric(nrep)
+  for(i in 1:nrep) {
+    bootdat<-NA
+    while(length(bootdat)!=5) {
+      smp1<-sample(1:nrow(obsplt), rep=T)
+      bootdat<-tapply(obsplt$obs[smp1], obsplt$plantedsr[smp1], hurdlemodel)
+    }
+    
+    bootsimulated<-NA
+    while(length(bootsimulated)!=5) {
+      smp2<-sample(1:nrow(simdatout_sum), nrow(obsplt), rep=T)
+      bootsimulated<-tapply(simdatout_sum$plottot[smp2], simdatout_sum$nsp[smp2], hurdlemodel)
+    }
+   
+    lmd<-suppressMessages(lmodel2(log10(bootdat)~log10(bootsimulated), range.y="interval", range.x="interval"))
+    bootrsquarelst[i]<-lmd$rsquare
+    bootslplst[i]<-lmd$regression.results[4,3]
+  }
+  
+  rsqest<-quantile(bootrsquarelst, 0.5)
+  pvest<-sum(bootslplst<0)/length(bootslplst)
+  if(pvest==0) {
+    pvest<-1/nrep
+  }
+  
+  r<-"R"
+  p<-"p"
+  rd<-paste(" =", round(rsqest, 2))
+  pv<-paste(" <", ceiling(pvest*1000)/1000)
+  
+  text(2, 200, bquote(.(r[1])^2 ~ .(rd[1])), cex=1.2)
+  text(2, 180, bquote(.(p[1]) ~ .(pv[1])), cex=1.2)
+}
 
 ####################################
 #plot abundance distributions
@@ -298,18 +322,38 @@ for(i in c(2,4,8,16)) {
   sbO<-is.finite(log(hi))&is.finite(log(lw))
   polygon(c(spxseq[sbO], rev(spxseq[sbO])), c(hi[sbO], rev(lw[sbO])), col=adjustcolor("white", alpha.f = 0.5), border="black")
   
-  #Plot R-squred
-  #lmd<-lmodel2(log10(abund_obs[3,sbS&sbO])~log10(abundqt[3,sbS&sbO]), range.y="interval", range.x="interval", nperm=nrep)
+  #Calculate and plot R-squared/p-values
+  if(printr2) {
+    bootrsquarelst<-numeric(nrep)
+    bootslplst<-numeric(nrep)
+    for(i in 1:nrep) {
+      bootdat<-apply(abundmatobs[sample(1:nrow(abundmatobs), rep=T),], 2, hurdlemodel)
+      bootdat[!is.finite(bootdat)]<-NA
+      
+      bootsimulated<-apply(abundmat[sample(1:nrow(abundmat), nrow(abundmatobs), rep=T),], 2, hurdlemodel)
+      bootsimulated[!is.finite(bootsimulated)]<-NA
+      
+      lmd<-suppressMessages(lmodel2(log10(bootdat)~log10(bootsimulated), range.y="interval", range.x="interval"))
+      
+      bootrsquarelst[i]<-lmd$rsquare
+      bootslplst[i]<-lmd$regression.results[4,3]
+    }
+    
+    rsqest<-quantile(bootrsquarelst, 0.5)
+    pvest<-sum(bootslplst<0)/length(bootslplst)
+    if(pvest==0) {
+      pvest<-1/nrep
+    }
+    
+    r<-"R"
+    p<-"p"
+    rd<-paste(" =", round(rsqest, 2))
+    pv<-paste(" <", ceiling(pvest*1000)/1000)
+    
+    text(4, 90, bquote(.(r[1])^2 ~ .(rd[1])), cex=1.2, pos=4)
+    text(4, 40, bquote(.(p[1]) ~ .(pv[1])), cex=1.2, pos=4)
+  }
   
-  #rsqest<-lmd$rsquare
-  
-  #r<-"R"
-  #p<-"p"
-  #rd<-paste(" =", round(rsqest, 2))
-  #pv<-paste(" <", ceiling(lmd$regression.results[4,5]*1000)/1000)
-  
-  #text(4, 90, bquote(.(r[1])^2 ~ .(rd[1])), cex=1.2, pos=4)
-  #text(4, 40, bquote(.(p[1]) ~ .(pv[1])), cex=1.2, pos=4)
   n<-n+1
 }
 
