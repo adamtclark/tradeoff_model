@@ -2,7 +2,7 @@
 ###run simulation
 ########################################################
 filterbyfg<-TRUE
-printr2<-FALSE #calculate R2 and p-values for fits?
+printr2<-TRUE #calculate R2 and p-values for fits?
 
 #load data
 trdat<-read.csv("data/data_products/filtered_tradeoff_data.csv")
@@ -243,12 +243,16 @@ if(printr2) {
       bootsimulated<-tapply(simdatout_sum$plottot[smp2], simdatout_sum$nsp[smp2], hurdlemodel)
     }
    
-    lmd<-suppressMessages(lmodel2(log10(bootdat)~log10(bootsimulated), range.y="interval", range.x="interval"))
-    bootrsquarelst[i]<-lmd$rsquare
+    sb<-is.finite(log10(bootdat))&is.finite(log10(bootsimulated))
+    lmd<-suppressWarnings(suppressMessages(lmodel2(log10(bootdat)[sb]~log10(bootsimulated)[sb], range.y="interval", range.x="interval")))
+    ssobs<-sum((log10(bootdat)[sb]-log10(bootsimulated)[sb])^2, na.rm=T)
+    sstot<-sum((mean(log10(bootsimulated)[sb], na.rm=T)-log10(bootsimulated)[sb])^2, na.rm=T)
+    
+    bootrsquarelst[i]<-1-ssobs/sstot
     bootslplst[i]<-lmd$regression.results[4,3]
   }
   
-  rsqest<-quantile(bootrsquarelst, 0.5)
+  rsqest<-quantile(bootrsquarelst, 0.5, na.rm=T)
   pvest<-sum(bootslplst<0)/length(bootslplst)
   if(pvest==0) {
     pvest<-1/nrep
@@ -333,13 +337,16 @@ for(i in c(2,4,8,16)) {
       bootsimulated<-apply(abundmat[sample(1:nrow(abundmat), nrow(abundmatobs), rep=T),], 2, hurdlemodel)
       bootsimulated[!is.finite(bootsimulated)]<-NA
       
-      lmd<-suppressMessages(lmodel2(log10(bootdat)~log10(bootsimulated), range.y="interval", range.x="interval"))
+      sb<-is.finite(log10(bootdat))&is.finite(log10(bootsimulated))
+      lmd<-suppressWarnings(suppressMessages(lmodel2(log10(bootdat)[sb]~log10(bootsimulated)[sb], range.y="interval", range.x="interval")))
+      ssobs<-sum((log10(bootdat)[sb]-log10(bootsimulated)[sb])^2, na.rm=T)
+      sstot<-sum((mean(log10(bootsimulated)[sb], na.rm=T)-log10(bootsimulated)[sb])^2, na.rm=T)
       
-      bootrsquarelst[i]<-lmd$rsquare
+      bootrsquarelst[i]<-1-ssobs/sstot
       bootslplst[i]<-lmd$regression.results[4,3]
     }
     
-    rsqest<-quantile(bootrsquarelst, 0.5)
+    rsqest<-quantile(bootrsquarelst, 0.5, na.rm=T)
     pvest<-sum(bootslplst<0)/length(bootslplst)
     if(pvest==0) {
       pvest<-1/nrep
