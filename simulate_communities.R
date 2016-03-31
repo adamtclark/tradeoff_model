@@ -226,18 +226,18 @@ lw<-10^(log10(smdat$plottot)-smdatsd$plottot/sqrt(obsdatsd_n$obs))
 segments(p2, hi, p2, lw, lwd=3)
 
 #Plot R-squared
-lmd<-lmodel2(log10(obsdat$obs)~log10(smdat$plottot), range.y="interval", range.x="interval", nperm=nrep)
+#lmd<-lmodel2(log10(obsdat$obs)~log10(smdat$plottot), range.y="interval", range.x="interval", nperm=nrep)
 
-rsqest<-lmd$rsquare
+#rsqest<-lmd$rsquare
 
-r<-"R"
-p<-"p"
-rd<-paste(" =", round(rsqest, 2))
-pv<-paste(" <", ceiling(lmd$regression.results[4,5]*1000)/1000)
+#r<-"R"
+#p<-"p"
+#rd<-paste(" =", round(rsqest, 2))
+#pv<-paste(" <", ceiling(lmd$regression.results[4,5]*1000)/1000)
 
-rd<-paste(" =", round(rsq, 2))
-text(2, 200, bquote(.(r[1])^2 ~ .(rd[1])), cex=1.2)
-text(2, 180, bquote(.(p[1]) ~ .(pv[1])), cex=1.2)
+#rd<-paste(" =", round(rsq, 2))
+#text(2, 200, bquote(.(r[1])^2 ~ .(rd[1])), cex=1.2)
+#text(2, 180, bquote(.(p[1]) ~ .(pv[1])), cex=1.2)
 
 ####################################
 #plot abundance distributions
@@ -299,17 +299,17 @@ for(i in c(2,4,8,16)) {
   polygon(c(spxseq[sbO], rev(spxseq[sbO])), c(hi[sbO], rev(lw[sbO])), col=adjustcolor("white", alpha.f = 0.5), border="black")
   
   #Plot R-squred
-  lmd<-lmodel2(log10(abund_obs[3,sbS&sbO])~log10(abundqt[3,sbS&sbO]), range.y="interval", range.x="interval", nperm=nrep)
+  #lmd<-lmodel2(log10(abund_obs[3,sbS&sbO])~log10(abundqt[3,sbS&sbO]), range.y="interval", range.x="interval", nperm=nrep)
   
-  rsqest<-lmd$rsquare
+  #rsqest<-lmd$rsquare
   
-  r<-"R"
-  p<-"p"
-  rd<-paste(" =", round(rsqest, 2))
-  pv<-paste(" <", ceiling(lmd$regression.results[4,5]*1000)/1000)
+  #r<-"R"
+  #p<-"p"
+  #rd<-paste(" =", round(rsqest, 2))
+  #pv<-paste(" <", ceiling(lmd$regression.results[4,5]*1000)/1000)
   
-  text(4, 90, bquote(.(r[1])^2 ~ .(rd[1])), cex=1.2, pos=4)
-  text(4, 40, bquote(.(p[1]) ~ .(pv[1])), cex=1.2, pos=4)
+  #text(4, 90, bquote(.(r[1])^2 ~ .(rd[1])), cex=1.2, pos=4)
+  #text(4, 40, bquote(.(p[1]) ~ .(pv[1])), cex=1.2, pos=4)
   n<-n+1
 }
 
