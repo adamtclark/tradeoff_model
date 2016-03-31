@@ -62,7 +62,7 @@ source("run_simulations.R")
 # plot outputs
 ############################################################
 #Get plots of prediction fits and CD
-pdf("figures/Figure3_fit_figure.pdf", width=8, height=8)
+pdf("figures/Figure2_fit_figure.pdf", width=8, height=8)
   source("aggregate_data.R")
   source("get_rsquared_intervals.R")
 dev.off()
@@ -80,7 +80,7 @@ dev.off()
 ############################################################
 # simulate from tradeoff surface
 ############################################################
-pdf("figures/Figure4_simulated_community.pdf", width=8, height=4)
+pdf("figures/Figure3_simulated_community.pdf", width=8, height=4)
   source("simulate_communities.R")
 dev.off()
 
