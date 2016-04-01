@@ -253,30 +253,37 @@ plot(xfit, qBfit,
      cex=c(1,1.5)[as.numeric((tradeoffdat$fg[kp]=="L")&(tradeoffdat$ine120[kp]))+1],
      xlab="",
      ylab="",
+     type="n",
      axes=F)
 sq<-c(0.06, 0.1, 0.15, 0.25, 0.4, 0.5)
 axis(1, log10(sq), sq)
 sq<-c(0.4, 0.6, 1, 1.6, 2.5, 4)
 axis(2, log10(sq), sq)
+
+#show difference between Panvi and Koecr
+ps1<-which(tradeoffdat[kp,]$Species=="Panicum virgatum")
+polygon(c(xfit[ps1], 0, 0, xfit[ps1]), c((qBfit)[ps1], (qBfit)[ps1], -1, -1),
+        col=adjustcolor("black", alpha.f = 0.2), border="darkgrey", density=20, angle=45)
+
+ps2<-which(tradeoffdat[kp,]$Species=="Koeleria cristata")
+polygon(c(xfit[ps2], 0, 0, xfit[ps2]), c((qBfit)[ps2], (qBfit)[ps2], -1, -1),
+        col=adjustcolor("black", alpha.f = 0.2), border="darkgrey", density=20, angle=135)
+#arrows(-0.6, (qBfit)[ps1], -0.6, (qBfit)[ps2], lwd=2, length=0.1, code=3)
+#text(-0.6, 0, "Koecr - Panvi", pos=4, cex=1.1)
+
 box()
 
-#label E120 species
-text(xfit[tradeoffdat[kp,]$ine120], qBfit[tradeoffdat[kp,]$ine120], splst, pos=3)
-
-#show difference between Andge and Liaas
-ps1<-which(tradeoffdat[kp,]$Species=="Andropogon gerardi")
-polygon(c(xfit[ps1], 0, 0, xfit[ps1]), c((qBfit)[ps1], (qBfit)[ps1], -1, -1),
-        col=adjustcolor("black", alpha.f = 0.2), border=NA)
-
-ps2<-which(tradeoffdat[kp,]$Species=="Liatris aspera")
-polygon(c(xfit[ps2], 0, 0, xfit[ps2]), c((qBfit)[ps2], (qBfit)[ps2], -1, -1),
-        col=adjustcolor("black", alpha.f = 0.2), border=NA)
-arrows(-0.6, (qBfit)[ps1], -0.6, (qBfit)[ps2], lwd=2, length=0.1, code=3)
-text(-0.6, 0, "Liaas - Andge", pos=4, cex=1.1)
+#add points
+points(xfit, qBfit,
+  pch=c(0:2, 5, 15:18)[as.numeric(as.factor(as.character(tradeoffdat$fg[kp])))+as.numeric(tradeoffdat$ine120[kp])*4],
+  cex=c(1,1.5)[as.numeric((tradeoffdat$fg[kp]=="L")&(tradeoffdat$ine120[kp]))+1])
 
 #label axes
 mtext(expression(paste(widehat(italic("R")), "*",", mg kg"^-1, sep="")), 1, line=2.5, cex=0.8)
 mtext(expression(paste(widehat(italic(qB)), "*", ", g m"^-2, sep="")), 2, line=2.2, cex=0.8)
+
+#label E120 species
+text(xfit[tradeoffdat[kp,]$ine120], qBfit[tradeoffdat[kp,]$ine120], splst, pos=3)
 
 #add error bars to traits
 sdrs<-rbind(xfit-tradeoffdat$sd_no3[kp]/log(10),
