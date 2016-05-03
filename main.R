@@ -18,23 +18,26 @@ source("get_filtered_estimate_functions.R")
 #build data for analyses
 source("filter_tradeoff_data.R")
 
-#Load C code
-system("R CMD SHLIB getbmest.c")
-dyn.load("getbmest.so")
-if(!exists("cl")) {
-  cl <- makeCluster(mc <- getOption("cl.cores", detectCores())) #cluters for simulations
-}
-
 #lists for outputs
 datoutlst<-NULL #list for output means
 ssoutlst<-NULL #list for output total data
 
 #set preferences
-centermeans<-TRUE #center to true E120 monoculture means?
 bootr2<-TRUE #get bootstrapped estimates for R2?
 dotradeofftest<-"saved" #get p-values for tradeoff slopes. Value "saved" loads an existing file
-nrep<-1000#20000 #number of iterations
+
+#simulation options
+centermeans<-TRUE #center to true E120 monoculture means?
+nrep<-100#20000 #number of iterations for nonparametric analyses
 adjustS<-TRUE #use 1994 total soil C to adjust among-plot variability?
+nrep_traits<-1 #number of iterations for testing within-species trait variation. If 1, then mean values are used
+
+#Load C code
+system("R CMD SHLIB getbmest.c")
+dyn.load("getbmest.so")
+if(!exists("cl") & nrep_traits>1) {
+  cl <- makeCluster(mc <- getOption("cl.cores", detectCores())) #cluters for simulations
+}
 
 ############################################################
 #Make 3D tradeoff plot

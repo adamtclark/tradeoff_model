@@ -24,22 +24,26 @@ frng<-NULL
 c4rng<-NULL
 lrng<-NULL
 
-c3rng[[1]]<-quantile(trdat$no3[trdat$fg=="C3"], c(0.025, 0.975), na.rm=T)
-frng[[1]]<-quantile(trdat$no3[trdat$fg=="F"], c(0.025, 0.975), na.rm=T)
-c4rng[[1]]<-quantile(trdat$no3[trdat$fg=="C4"], c(0.025, 0.975), na.rm=T)
-lrng[[1]]<-quantile(trdat$no3[trdat$fg=="L"], c(0.025, 0.975), na.rm=T)
+#quantiles for bounding tradeoff surface
+qlow<-0.025
+qhigh<-0.975
+  
+c3rng[[1]]<-quantile(trdat$no3[trdat$fg=="C3"], c(qlow, qhigh), na.rm=T)
+frng[[1]]<-quantile(trdat$no3[trdat$fg=="F"], c(qlow, qhigh), na.rm=T)
+c4rng[[1]]<-quantile(trdat$no3[trdat$fg=="C4"], c(qlow, qhigh), na.rm=T)
+lrng[[1]]<-quantile(trdat$no3[trdat$fg=="L"], c(qlow, qhigh), na.rm=T)
 
-c3rng[[2]]<-quantile(trdat$ptisn[trdat$fg=="C3"], c(0.025, 0.975), na.rm=T)
-frng[[2]]<-quantile(trdat$ptisn[trdat$fg=="F"], c(0.025, 0.975), na.rm=T)
-c4rng[[2]]<-quantile(trdat$ptisn[trdat$fg=="C4"], c(0.025, 0.975), na.rm=T)
-lrng[[2]]<-quantile(trdat$ptisn[trdat$fg=="L"], c(0.025, 0.975), na.rm=T)
+c3rng[[2]]<-quantile(trdat$ptisn[trdat$fg=="C3"], c(qlow, qhigh), na.rm=T)
+frng[[2]]<-quantile(trdat$ptisn[trdat$fg=="F"], c(qlow, qhigh), na.rm=T)
+c4rng[[2]]<-quantile(trdat$ptisn[trdat$fg=="C4"], c(qlow, qhigh), na.rm=T)
+lrng[[2]]<-quantile(trdat$ptisn[trdat$fg=="L"], c(qlow, qhigh), na.rm=T)
 
-c3rng[[3]]<-quantile(trdat$abv[trdat$fg=="C3"], c(0.025, 0.975), na.rm=T)
-frng[[3]]<-quantile(trdat$abv[trdat$fg=="F"], c(0.025, 0.975), na.rm=T)
-c4rng[[3]]<-quantile(trdat$abv[trdat$fg=="C4"], c(0.025, 0.975), na.rm=T)
-lrng[[3]]<-quantile(trdat$abv[trdat$fg=="L"], c(0.025, 0.975), na.rm=T)
+c3rng[[3]]<-quantile(trdat$abv[trdat$fg=="C3"], c(qlow, qhigh), na.rm=T)
+frng[[3]]<-quantile(trdat$abv[trdat$fg=="F"], c(qlow, qhigh), na.rm=T)
+c4rng[[3]]<-quantile(trdat$abv[trdat$fg=="C4"], c(qlow, qhigh), na.rm=T)
+lrng[[3]]<-quantile(trdat$abv[trdat$fg=="L"], c(qlow, qhigh), na.rm=T)
 
-#fg for each species
+#fg for each species in E120
 fglst<-c("F", "L", "C4", "F", "C3", "L", "F", "L", "C4", "L", "C3", "C4", "F", "C4")
 
 #list of fg in E120
@@ -145,9 +149,13 @@ for(j in 1:nrep) {
     no3lst_dat<-cbind(no3lst, no3sd_mu)
     pNi_dat<-cbind(pNi, pNisd_mu)
     abmi_dat<-cbind(abmi, abmisd_mu)
-    niter<-13 #number of sample years in e120, 2001-2014
-        
-    iterout<-repsmp()
+    niter<-1#13 #number of sample years in e120, 2001-2014
+    
+    if(niter==1 | nrep==1) {
+      iterout<-repsmp_single()
+    } else {
+      iterout<-repsmp()
+    }
     esti<-iterout[1:nsp]
     
     esti[!is.finite(esti)]<-0

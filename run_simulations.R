@@ -11,7 +11,6 @@ for(usetr in 1:2) {
            "Luppe", "Panvi", "Petpu", "Poapr", "Schsc", "Solri", "Sornu")
   fglst<-as.character(tre120$fg)
   
-  
   #Load e120 data
   source("load_e120_data.R")
   
@@ -43,21 +42,21 @@ for(usetr in 1:2) {
     yrs<-sort(unique(e120dat$Year[e120dat$Plot==plts[i]]))
     
     #matrix for storing prediction output for this plot
-    esti<-matrix(nrow=nrep,ncol=NROW(abmi_dat))
-    esti_sd<-matrix(nrow=nrep,ncol=NROW(abmi_dat))
+    esti<-matrix(nrow=nrep_traits,ncol=NROW(abmi_dat))
+    esti_sd<-matrix(nrow=nrep_traits,ncol=NROW(abmi_dat))
     
     if(adjustS) {
       dS<-(pCstart$pCSoil940_20[which(plts[i]==pCstart$Plot)])/(pCmedian)
       abmi_dat$abv<-(abmi_dat$abv*dS)
     }
     
-    if(nrep>1) { #Simulate error distribiutions if nrep>1
+    if(nrep_traits>1) { #Simulate error distribiutions if nrep>1
       #export parameters for parallel function
       clusterExport(cl, c("niter", "no3lst_dat", "pNi_dat", "abmi_dat",
                           "colSums_safe", "colMeans_safe", "colSD_safe", "nsp", "ilogit", "logit"))
       
       #run parallel program for predicting community biomass
-      clusterout<-t(matrix(nrow=2*nsp, unlist(parLapply(cl=cl, 1:nrep, fun=repsmp))))
+      clusterout<-t(matrix(nrow=2*nsp, unlist(parLapply(cl=cl, 1:nrep_traits, fun=repsmp))))
       
       #extract results
       esti<-clusterout[,1:nsp]
@@ -95,7 +94,7 @@ for(usetr in 1:2) {
                                      sp=splst[ps],
                                      obs=unname(obs),
                                      est=c(t(esti)),
-                                     iter=rep(1:nrep, each=length(obs))))
+                                     iter=rep(1:nrep_traits, each=length(obs))))
     }
     
     #save mean results
@@ -115,6 +114,9 @@ for(usetr in 1:2) {
   datoutlst[[usetr]]<-datout
   ssoutlst[[usetr]]<-ssout
 }
-stopCluster(cl)
+
+if(exists("cl")) {
+  stopCluster(cl)
+}
 
 #save.image("fit_tradeoff_dataout.RData")

@@ -113,7 +113,12 @@ for(usetr in 1:2) {
     agg_res$res<-(log10(agg_res$obs)-log10(agg_res$est))^2
     #calcualte deviation from mean
     sstot_res<-aggregate(cbind(res=agg_res$obs), list(iter=agg_res$iter), function(x) sum((log10(x)-mean(log10(x), na.rm=T))^2,na.rm=T))
-    agg_res<-aggregate(cbind(res=agg_res$res, sstotrest=agg_res$sstotrest), list(iter=agg_res$iter), function(x) sum(x,na.rm=T))
+    
+    #Null model: B*mono*(1/n)
+    #agg_res$null<-e120_abv[match(agg_res$sp, splst)]/agg_res$plantedsr
+    #agg_res$null_dev<-(agg_res$obs-agg_res$null)^2
+    #sstot_res<-aggregate(cbind(res=agg_res$null_dev), list(iter=agg_res$iter), function(x) sum(x,na.rm=T))
+    #agg_res<-aggregate(cbind(res=agg_res$res, sstotrest=agg_res$sstotrest), list(iter=agg_res$iter), function(x) sum(x,na.rm=T))
     
     #CD from mean
     rsest<-1-agg_res$res/sstot_res$res
@@ -221,6 +226,9 @@ for(usetr in 1:2) {
       ssres<-with(agg_res[agg_res$plantedsr==ii,], tapply(res, iter, sum))
       #deviation from the mean
       sstot2<-sum((log10(agdat_plot[agdat_plot$plantedsr==ii,]$obs)-mean(log10(agdat_plot$obs), na.rm=T))^2, na.rm=T)
+      
+      #null model: sum(B_obs)|D
+      #sstot2<-sum((log10(agdat_plot[agdat_plot$plantedsr==ii,]$obs)-mean(log10(agdat_plot[agdat_plot$plantedsr==ii,]$obs), na.rm=T))^2, na.rm=T)
       
       #calculate CD for predictions
       rsqest<-1-ssres/sstot2
