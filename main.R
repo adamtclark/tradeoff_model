@@ -11,6 +11,7 @@ require(lmodel2) #fit bivariate major axis regressions
 require(mvtnorm) #calculate multivariate normal distribution
 require(plot3D) #make tradeoff plots
 require(lme4) #fit trait values from data
+require(data.table) #for reforming data
 
 #Load R functions
 source("get_filtered_estimate_functions.R")
@@ -30,7 +31,7 @@ dotradeofftest<-"saved" #get p-values for tradeoff slopes. Value "saved" loads a
 centermeans<-TRUE #center to true E120 monoculture means?
 nrep<-100#20000 #number of iterations for nonparametric analyses
 adjustS<-TRUE #use 1994 total soil C to adjust among-plot variability?
-nrep_traits<-1 #number of iterations for testing within-species trait variation. If 1, then mean values are used
+nrep_traits<-1000 #number of iterations for testing within-species trait variation. If 1, then mean values are used
 
 #Load C code
 system("R CMD SHLIB getbmest.c")

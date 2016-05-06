@@ -71,7 +71,9 @@ if(centermeans) {
     #scale centered values such that monocultures will still match observations
     for(i in 1:length(splst)) {
       lap<-pltloc$plot[as.logical((pltloc$plantedsr==1)&(pltloc[,i+1]==1))]
-      slw<-(pCstart$pCSoil940_20[pCstart$Plot%in%lap])/pCmedian
+      #slw<-(0.692158+1.335416*(pCstart$pCSoil940_20[pCstart$Plot%in%lap]))/(0.692158+1.335416*pCmedian)
+      #slw[slw<0]<-1
+      slw<-(pCstart$pCSoil940_20[pCstart$Plot%in%lap])/(pCmedian)
       
       wi<-(1/prod(slw))^(1/length(slw))
       tre120$abv[i]<-abv[i]*wi

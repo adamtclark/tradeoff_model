@@ -1,7 +1,8 @@
 ############################################################
 #Cleaning and fitting species trait data for e120 polyculture model
 ############################################################
-dattot<-read.csv("data/total_monoculture_data.csv")
+mondatall<-read.csv("data/total_monoculture_data.csv")
+dattot<-mondatall
 
 #CLEANING RULES:
 #0: Merge experiment numbers
