@@ -71,6 +71,11 @@ pdf("figures/Figure2_fit_figure.pdf", width=8, height=8)
   source("get_rsquared_intervals.R")
 dev.off()
 
+#Plot richness estimates
+pdf("figures/richness_figure.pdf", width=8, height=4)
+  source("get_richness_metrics.R")
+dev.off()
+
 #Fit by diversity level
 pdf("figures/FigureS2_species_fits.pdf", width=6, height=10)  
   par(mfrow=c(7,2), mar=c(2,2,2,2), oma=c(3,3,0,0))

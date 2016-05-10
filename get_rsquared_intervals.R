@@ -33,7 +33,8 @@ for(itype in 1:2) {
     }
     
     #snapping vs. no snapping
-    trnotr<-t.test(log(tmp1), log(tmp2), paired = TRUE)$p.value
+    trnotr<-suppressWarnings(wilcox.test((tmp1), (tmp2), paired = TRUE)$p.value)
+    #trnotr<-t.test((tmp1), (tmp2), paired = TRUE)$p.value
     
     pvallst<-rbind(pvallst, data.frame(trnotr=trnotr, sp=spllvls[i]))
   }
@@ -49,13 +50,17 @@ for(itype in 1:2) {
   ylims1<-min(c(rsqlst_1[rsqlst_1$type==type,]$l025, rsqlst_2[rsqlst_1$type==type,]$l025))
   plot(c(0.5,5.5), c(ylims1,ylims2), axes=F, type="n", xlab="", ylab="",
        cex.axis=1.3)
-  put.fig.letter(label = "E.", location = "topleft", cex=2, x=0.04, y=0.98)
+  put.fig.letter(label = c("E.", "F.")[itype], location = "topleft", cex=2, x=0.04, y=0.98)
   
-  sq<-log(seq(0, 6, by=c(0.5, 0.1)[itype]))
+  if(itype==1) {
+    sq<-log10(c(1,2,3,5,9))
+  } else {
+    sq<-log10(seq(0.1, 12, by=c(0.1)))
+  }
   abline(h=sq[-which(sq==0)], col="grey")
   abline(v=seq(1, 5, by=1), col="grey")
   
-  axis(2, sq, round(exp(sq),1)-1, cex.axis=1.3)
+  axis(2, sq, round(10^(sq),1)-1, cex.axis=1.3)
   
   axis(1, 1:5, c("2", "4", "8", "16", "2-16"), cex.axis=1.3)
   text(1:5+c(rep(0.18, 3), 0.22, 0.4), rep(ylims1-(ylims2-ylims1)*0.125, 5), pvl[1:5], xpd=NA)
@@ -77,7 +82,7 @@ for(itype in 1:2) {
   #snapping
   rsuse<-rsqlst_2[rsqlst_1$type==type,]
   colpos<-2
-  sppos<-2
+  sppos<-4
   segments(1:6+adj[sppos], rsuse$l025, 1:6+adj[sppos], rsuse$u975, col=collst[colpos], lwd=1.5, lend=2)
   segments(1:6+adj[sppos], rsuse$mumsd, 1:6+adj[sppos], rsuse$mupsd, col=collst[colpos], lwd=3, lend=2)
   segments(1:6+adj[sppos]-0.05, rsuse$mu, 1:6+adj[sppos]+0.05, rsuse$mu, col=collst[colpos], lwd=3, lend=2)

@@ -1,4 +1,10 @@
-for(usetr in 1:2) {
+for(iternumber in 1:4) {
+  if(iternumber>2) { #repeat without interspecific variation
+    nrep_traits_old<-nrep_traits
+    nrep_traits<-1
+  }
+  
+  usetr<-c(1,2,1,2)[iternumber]
   #usetr==1 means "do not snap traits to tradeoff"
   #usetr==2 means "do snap traits to tradeoff"
   
@@ -110,18 +116,22 @@ for(usetr in 1:2) {
     
     #print progress
     if(i/10 == round(i/10)) {
-      print(round(i/length(plts)/2+0.5*(usetr-1), 2))
+      print(round(i/length(plts)/4+0.25*(iternumber-1), 2))
     }
   }
   
   #record simulation output
   datout$plantedsr<-pltloc$plantedsr[match(datout$plt, pltloc$plot)]
-  datoutlst[[usetr]]<-datout
-  ssoutlst[[usetr]]<-ssout
+  datoutlst[[iternumber]]<-datout
+  ssoutlst[[iternumber]]<-ssout
 }
 
 if(exists("cl")) {
   stopCluster(cl)
+}
+
+if(iternumber>2) {
+  nrep_traits<-nrep_traits_old
 }
 
 #save.image("fit_tradeoff_dataout.RData")
