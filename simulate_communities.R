@@ -149,7 +149,7 @@ for(j in 1:nrep) {
     no3lst_dat<-cbind(no3lst, no3sd_mu)
     pNi_dat<-cbind(pNi, pNisd_mu)
     abmi_dat<-cbind(abmi, abmisd_mu)
-    niter<-1#13 #number of sample years in e120, 2001-2014
+    niter<-13 #number of sample years in e120, 2001-2014
     
     if(niter==1 | nrep==1) {
       iterout<-repsmp_single()
