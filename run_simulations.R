@@ -61,10 +61,12 @@ for(iternumber in 1:4) {
       abmi_dat$abv<-(abmi_dat$abv*dS)
     }
     
+    plrich<-pltloc$plantedsr[which(plts[i]==pltloc$plot)]
     if(nrep_traits>1) { #Simulate error distribiutions if nrep>1
       #export parameters for parallel function
       clusterExport(cl, c("niter", "no3lst_dat", "pNi_dat", "abmi_dat",
-                          "colSums_safe", "colMeans_safe", "colSD_safe", "nsp", "ilogit", "logit"))
+                          "colSums_safe", "colMeans_safe", "colSD_safe", "nsp", "ilogit", "logit",
+                          "ps", "plrich"))
       
       #run parallel program for predicting community biomass
       clusterout<-t(matrix(nrow=2*nsp, unlist(parLapply(cl=cl, 1:nrep_traits, fun=repsmp))))
@@ -124,14 +126,10 @@ for(iternumber in 1:4) {
   datout$plantedsr<-pltloc$plantedsr[match(datout$plt, pltloc$plot)]
   datoutlst[[iternumber]]<-datout
   ssoutlst[[iternumber]]<-ssout
-}
-
-if(exists("cl")) {
-  stopCluster(cl)
-}
-
-if(iternumber>2) {
-  nrep_traits<-nrep_traits_old
+  
+  if(iternumber>2) {
+    nrep_traits<-nrep_traits_old
+  }
 }
 
 #save.image("fit_tradeoff_dataout.RData")

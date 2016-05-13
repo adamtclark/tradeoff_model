@@ -29,7 +29,7 @@ dotradeofftest<-"saved" #get p-values for tradeoff slopes. Value "saved" loads a
 
 #simulation options
 centermeans<-TRUE #center to true E120 monoculture means?
-nrep<-100#20000 #number of iterations for nonparametric analyses
+nrep<-1000 #number of iterations for nonparametric analyses
 adjustS<-TRUE #use 1994 total soil C to adjust among-plot variability?
 nrep_traits<-1000 #number of iterations for testing within-species trait variation. If 1, then mean values are used
 
@@ -92,13 +92,65 @@ dev.off()
 pdf("figures/Figure3_simulated_community.pdf", width=8, height=4)
   source("simulate_communities.R")
 dev.off()
-
 #save.image("data/data_products/simulated_results_simulated.RData") #save output for long simulations
-
 
 ############################################################
 # output supplementary tables
 ############################################################
 source("make_sup_tables.R")
 
+############################################################
+#Get interaction coefficients
+############################################################
+source("test_biomass_cor.R")
 
+############################################################
+# run altered simulations
+############################################################
+datout_alteredlst<-NULL
+
+#Andropogon gerardi
+alter_whichspecies<-which(splst=="Andge") #alter R* for which species?
+alter_whichno3<-which(splst%in%c("Schsc")) #alter it to lower than which species?
+alter_whichrichness<-c(8,16) #for which richness treatments?
+alter_probability<-0.5 #with what probability?
+
+source("run_simulations_altered.R")
+datout_alteredlst[[1]]<-datout_altered
+
+#Lupinus perennis
+alter_whichspecies<-which(splst%in%c("Luppe"))
+alter_whichno3<-which(splst=="Amoca")
+alter_whichrichness<-c(1,2,4,8,16)
+alter_probability<-0.8
+
+source("run_simulations_altered.R")
+datout_alteredlst[[2]]<-datout_altered
+
+#Early season
+lowerdlim<-2 #revert Poapr to monoculture biomass up to which diversity level?
+alter_whichspecies<-rev(which(splst%in%c("Poapr")))
+alter_whichno3<-(1:length(splst))
+alter_whichrichness<-c(4,8,16)
+alter_probability<-1/3
+
+source("run_simulations_altered.R")
+datout_alteredlst[[3]]<-datout_altered
+
+#make plots
+datout_altered_andge<-datout_alteredlst[[1]]
+datout_altered_luppe<-datout_alteredlst[[2]]
+datout_altered_early<-datout_alteredlst[[3]]
+
+pdf("figures/adjusted models.pdf", width=8, height=6)
+  source("plot_adjustments.R")
+dev.off()
+
+############################################################
+#close cluster
+############################################################
+if(exists("cl")) {
+  stopCluster(cl)
+}
+
+#save.image("data/data_products/simulated_results_altered.RData") #save output for long simulations

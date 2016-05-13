@@ -44,6 +44,38 @@ repsmp<-function(...) {
   return(c(esti, esti_sd))
 }
 
+#parallelized .C function, with altered R*'s
+repsmp_altered<-function(...) {
+  dyn.load("getbmest.so")
+  abvest<-matrix(ncol=NROW(abmi_dat), nrow=niter)
+  for(j in 1:niter) {
+    no3lst<-exp(rnorm(nsp, log(no3lst_dat[,1]), no3lst_dat[,2]))
+    pNi<-ilogit(rnorm(nsp, logit(pNi_dat[,1]), pNi_dat[,2]))
+    abmi<-exp(rnorm(nsp, log(abmi_dat[,1]), abmi_dat[,2]))
+    
+    rnf<-runif(1)<alter_probability
+    if(sum(ps[alter_whichspecies])>0 & plrich%in%alter_whichrichness & rnf) { #make a better cmp.
+      #agpos<-sum(ps[1:alter_whichspecies])
+      alter_whichspecies_use<-alter_whichspecies[ps[alter_whichspecies]]
+      agpos<-unname(unlist(tapply(alter_whichspecies_use,1:length(alter_whichspecies_use),function(x) sum(ps[seq(1:x)]))))
+      
+      no3pos<-match(alter_whichno3, which(ps>0))
+      no3pos<-no3pos[is.finite(no3pos)]
+      if(sum(no3pos)>0) {
+        no3lst[agpos]<-min(no3lst[no3pos])*seq(0.985, 0.995, length=length(alter_whichspecies_use))
+      }
+    }
+    
+    abvest[j,]<-.C("getbmest", no3lst=as.double(no3lst), pNi=as.double(pNi), abmi=as.double(abmi), plabmi=as.integer(length(abmi)), abm_esti=as.double(numeric(length = length(abmi))))$abm_esti
+    
+  }
+  pzero<-colSums_safe(abvest==0)/NROW(abvest)
+  esti<-exp(colMeans_safe(log(abvest)))*(1-pzero)
+  esti_sd<-colSD_safe(log(abvest))
+  
+  return(c(esti, esti_sd))
+}
+
 #run once in .C framework
 repsmp_single<-function(...) {
   dyn.load("getbmest.so")
