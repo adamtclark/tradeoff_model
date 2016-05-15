@@ -55,13 +55,12 @@ pvalmark<-c("", "", "*", "**", "***")
 ylims1<-min(c(richmat_obs, unlist(richmat_est)))
 ylims2<-max(c(richmat_obs, unlist(richmat_est)))
 
-par(mfrow=c(1,2), mar=c(2,2,2,1), oma=c(3,3,1,0))
 for(plti in 1:2) {
   plot(c(0.5,4.5), c(1,ylims2), axes=F, type="n", xlab="", ylab="",
        cex.axis=1.3,
-       main=c("Without Intraspecific Variation", "With Intraspecific Variation")[plti])
+       main="")
   put.fig.letter(label = c("A.", "B.")[plti], location = "topleft", cex=2, x=0.04, y=0.98)  
-  axis(2)
+  axis(2, cex.axis=1.3)
   axis(1, 1:4, c("2", "4", "8", "16"), cex.axis=1.3)
   abline(h=seq(2, 14, by=2), v=c(0.5, 1.5, 2.5, 3.5, 4.5), col="grey")
   box()
@@ -86,7 +85,7 @@ for(plti in 1:2) {
   clst<-rbind(c(3,4), c(1,2))
   for(iternumber in clst[plti,]) {
     richmat_est<-richmat_est_lst[[iternumber]]
-    sppos<-c(4,1,2,3)[iternumber]
+    sppos<-c(1,4,3,2)[iternumber]
     colpos<-c(1,2,1,2)[iternumber]
     linepos<-c(1,1,3,3)[iternumber]
     
@@ -104,10 +103,7 @@ for(plti in 1:2) {
       subs<-which(tmp$plantedsr==srichlst[j])
       pv<-wilcox.test(tmp$obs[subs], tmp$est[subs], paired=TRUE, exact = FALSE)$p.value
       
-      text(j+adj[sppos], richmat_est[j,4], pvalmark[sum(pv<pvallevels)+1], col=collst[colpos], adj=c(c(0, 1, 0, 1)[iternumber], 1))
+      text(j+adj[sppos], richmat_est[j,4], pvalmark[sum(pv<pvallevels)+1], col=collst[colpos], adj=c(c(1, 0, 1, 0)[iternumber], 1))
     }
   }
 }
-par(mfrow=c(1,1))
-mtext("Planted Richness", 1, line=1, cex=1.5, outer=T)
-mtext("Sample Richness", 2, line=1, cex=1.5, outer=T)

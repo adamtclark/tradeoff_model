@@ -1,7 +1,3 @@
-#plot blank space
-plot(0,0,type="n", axes=F, xlab="", ylab=""); plot(0,0,type="n", axes=F, xlab="", ylab="")
-
-
 #load data
 pnums<-colSums(table(e120dat$Plot[e120dat$Year==2014], e120dat$NumSp[e120dat$Year==2014])>0)
 rsqlst_1<-read.csv("data/data_products/rsqlst_obs_tr_1_log.csv")
@@ -50,7 +46,7 @@ for(itype in 1:2) {
   ylims1<-min(c(rsqlst_1[rsqlst_1$type==type,]$l025, rsqlst_2[rsqlst_1$type==type,]$l025))
   plot(c(0.5,5.5), c(ylims1,ylims2), axes=F, type="n", xlab="", ylab="",
        cex.axis=1.3)
-  put.fig.letter(label = c("E.", "F.")[itype], location = "topleft", cex=2, x=0.04, y=0.98)
+  put.fig.letter(label = c("C.", "D.")[itype], location = "topleft", cex=2, x=0.04, y=0.98)
   
   if(itype==1) {
     sq<-log10(c(1,2,3,5,9))
@@ -63,7 +59,7 @@ for(itype in 1:2) {
   axis(2, sq, round(10^(sq),1)-1, cex.axis=1.3)
   
   axis(1, 1:5, c("2", "4", "8", "16", "2-16"), cex.axis=1.3)
-  text(1:5+c(rep(0.18, 3), 0.22, 0.4), rep(ylims1-(ylims2-ylims1)*0.125, 5), pvl[1:5], xpd=NA)
+  text(1:5+c(rep(0.18, 3), 0.22, 0.4), rep(ylims1-(ylims2-ylims1)*0.11, 5), pvl[1:5], xpd=NA)
   box()
   
   adj<-c(-0.2, 0.1, -0.1, 0.2)
@@ -89,17 +85,3 @@ for(itype in 1:2) {
   
   lines(1:4+adj[sppos], rsuse$mu[1:4], col=collst[colpos], lwd=1.5, lty=1)
 }
-
-
-#make figure labels
-par(mfrow=c(1,1), new=TRUE)
-mtext("Planted Richness", 1, line=2, cex=1.5, outer=T)
-mtext(expression(paste("Observed Biomass, g m"^"-2", sep="")), 2, line=1, cex=1.5, outer=T, adj=0.8)
-mtext(expression(paste("MAE, fold change", sep="")), 2, line=1, cex=1.5, outer=T, adj=0)  
-
-put.fig.letter(expression(paste("Predicted Biomass, g m"^"-2", sep="")), x=0.5, y=4.5/13, cex=1.5)
-put.fig.letter("Species-Level Biomass", x=0.25, y=1, cex=1.3)
-put.fig.letter("Total Plot Biomass", x=0.75, y=1, cex=1.3)
-
-put.fig.letter("With Snapping", x=1, y=7/13, cex=1.1, srt=90+180)
-put.fig.letter("Without Snapping", x=1, y=11/13, cex=1.1, srt=90+180)

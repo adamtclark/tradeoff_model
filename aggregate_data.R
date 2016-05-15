@@ -1,17 +1,21 @@
 #Set up plot
-m<-rbind(c(1,1,1,1,2,2,2,2),
-         c(1,1,1,1,2,2,2,2),
-         c(1,1,1,1,2,2,2,2),
-         c(1,1,1,1,2,2,2,2),
-         c(3,3,3,3,4,4,4,4),
-         c(3,3,3,3,4,4,4,4),
-         c(3,3,3,3,4,4,4,4),
-         c(3,3,3,3,4,4,4,4),
+m<-rbind(c(7,7,7,7,8,8,8,8),
+         c(7,7,7,7,8,8,8,8),
+         c(7,7,7,7,8,8,8,8),
+         c(7,7,7,7,8,8,8,8),
          c(5,5,5,5,6,6,6,6),
-         c(7,7,7,7,8,8,8,8),
-         c(7,7,7,7,8,8,8,8),
-         c(7,7,7,7,8,8,8,8),
-         c(7,7,7,7,8,8,8,8))
+         c(5,5,5,5,6,6,6,6),
+         c(5,5,5,5,6,6,6,6),
+         c(5,5,5,5,6,6,6,6),
+         c(9,9,9,9,10,10,10,10),
+         c(1,1,1,1,2,2,2,2),
+         c(1,1,1,1,2,2,2,2),
+         c(1,1,1,1,2,2,2,2),
+         c(1,1,1,1,2,2,2,2),
+         c(3,3,3,3,4,4,4,4),
+         c(3,3,3,3,4,4,4,4),
+         c(3,3,3,3,4,4,4,4),
+         c(3,3,3,3,4,4,4,4))
 
 layout(m)
 replacelower<-log10(0.02) #0.0025 quantile - 99.9% interval
@@ -49,9 +53,9 @@ for(usetr in 1:2) {
        xlim=c(replacelower, log10(max(datout[subs,]$est))),
        ylim=c(replacelower, log10(max(datout[subs,]$obs))))
   if(usetr==2) {
-    put.fig.letter(label = "C.", location = "topleft", cex=2, x=0.04, y=0.98)
+    put.fig.letter(label = "G.", location = "topleft", cex=2, x=0.04, y=0.98)
   } else {
-    put.fig.letter(label = "A.", location = "topleft", cex=2, x=0.04, y=0.98)
+    put.fig.letter(label = "E.", location = "topleft", cex=2, x=0.04, y=0.98)
   }
   
   sq0<-c(0.1, 1, 10, 100)
@@ -173,9 +177,9 @@ for(usetr in 1:2) {
        axes=F,
        cex.axis=1.3)
   if(usetr==2) {
-    put.fig.letter(label = "D.", location = "topleft", cex=2, x=0.04, y=0.98)
+    put.fig.letter(label = "H.", location = "topleft", cex=2, x=0.04, y=0.98)
   } else {
-    put.fig.letter(label = "B.", location = "topleft", cex=2, x=0.04, y=0.98)
+    put.fig.letter(label = "F.", location = "topleft", cex=2, x=0.04, y=0.98)
   }
   
   sq<-c(25, 50, 100, 200, 400)

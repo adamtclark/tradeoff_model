@@ -52,10 +52,6 @@ for(iternumber in 1:4) {
     esti_sd<-matrix(nrow=nrep_traits,ncol=NROW(abmi_dat))
     
     if(adjustS) {
-      #dS<-(0.692158+1.335416*pCstart$pCSoil940_20[which(plts[i]==pCstart$Plot)])/(0.692158+1.335416*pCmedian)
-      #if(dS<0) {
-      #  dS<-1
-      #}
       dS<-(pCstart$pCSoil940_20[which(plts[i]==pCstart$Plot)])/(pCmedian)
       
       abmi_dat$abv<-(abmi_dat$abv*dS)
@@ -131,5 +127,3 @@ for(iternumber in 1:4) {
     nrep_traits<-nrep_traits_old
   }
 }
-
-#save.image("fit_tradeoff_dataout.RData")

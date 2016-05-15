@@ -55,7 +55,6 @@ repsmp_altered<-function(...) {
     
     rnf<-runif(1)<alter_probability
     if(sum(ps[alter_whichspecies])>0 & plrich%in%alter_whichrichness & rnf) { #make a better cmp.
-      #agpos<-sum(ps[1:alter_whichspecies])
       alter_whichspecies_use<-alter_whichspecies[ps[alter_whichspecies]]
       agpos<-unname(unlist(tapply(alter_whichspecies_use,1:length(alter_whichspecies_use),function(x) sum(ps[seq(1:x)]))))
       

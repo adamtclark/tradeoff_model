@@ -59,21 +59,38 @@ dev.off()
 # run simulations
 ############################################################
 source("run_simulations.R")
-#save.image("data/data_products/simulated_results.RData") #save output for long simulations
+save.image("data/data_products/simulated_results.RData") #save output for long simulations
 #load("data/data_products/simulated_results.RData")
 
 ############################################################
 # plot outputs
 ############################################################
 #Get plots of prediction fits and CD
-pdf("figures/Figure2_fit_figure.pdf", width=8, height=8)
-  source("aggregate_data.R")
-  source("get_rsquared_intervals.R")
-dev.off()
+pdf("figures/Figure2_fit_figure.pdf", width=8, height=12)
+  source("aggregate_data.R") #observed vs. fitted
+  source("get_rsquared_intervals.R") #MAE fit for biomass by diversity level
+  source("get_richness_metrics.R") #observed vs. sampled diversity
 
-#Plot richness estimates
-pdf("figures/richness_figure.pdf", width=8, height=4)
-  source("get_richness_metrics.R")
+  #make figure labels
+  mtext("Planted Richness", 1, line=-44.5, cex=1.5, outer=T)
+  mtext(expression(paste("Observed Biomass, g m"^"-2", sep="")), 2, line=0.4, cex=1.5, outer=T, adj=0.18)
+  mtext(expression(paste("Predicted Biomass, g m"^"-2", sep="")), 1, line=2, cex=1.5, outer=T, adj=0.5)
+
+  mtext(expression(paste("MAE, fold change", sep="")), 2, line=0.4, cex=1.5, outer=T, adj=0.68)
+  mtext("Sample Richness", 2, line=0.85, cex=1.5, outer=T, adj=0.965)
+
+  mtext("With Snapping", 4, line=-1, cex=1, outer=T, adj=0.081)
+  mtext("Without Snapping", 4, line=-1, cex=1, outer=T, adj=0.33)
+  
+  adj<-0.19
+  mtext("Species-Level Biomass", 1, line=-40.5, cex=1, outer=T, adj=adj)
+  mtext("Total Plot Biomass", 1, line=-40.5, cex=1, outer=T, adj=1-adj)
+  
+  mtext("Species-Level Biomass", 1, line=-66, cex=1, outer=T, adj=adj)
+  mtext("Total Plot Biomass", 1, line=-66, cex=1, outer=T, adj=1-adj)
+
+  mtext("Without Intraspecific Variation", 1, line=-86.5, cex=1, outer=T, adj=adj-0.04)
+  mtext("With Intraspecific Variation", 1, line=-86.5, cex=1, outer=T, adj=1-adj+0.04)
 dev.off()
 
 #Fit by diversity level
@@ -92,7 +109,7 @@ dev.off()
 pdf("figures/Figure3_simulated_community.pdf", width=8, height=4)
   source("simulate_communities.R")
 dev.off()
-#save.image("data/data_products/simulated_results_simulated.RData") #save output for long simulations
+save.image("data/data_products/simulated_results_simulated.RData") #save output for long simulations
 
 ############################################################
 # output supplementary tables
@@ -107,7 +124,10 @@ source("test_biomass_cor.R")
 ############################################################
 # run altered simulations
 ############################################################
-datout_alteredlst<-NULL
+#refresh cluster
+stopCluster(cl)
+cl <- makeCluster(mc <- getOption("cl.cores", detectCores())) #cluters for simulations
+datout_alteredlst<-NULL #list for saving results
 
 #Andropogon gerardi
 alter_whichspecies<-which(splst=="Andge") #alter R* for which species?
@@ -142,7 +162,7 @@ datout_altered_andge<-datout_alteredlst[[1]]
 datout_altered_luppe<-datout_alteredlst[[2]]
 datout_altered_early<-datout_alteredlst[[3]]
 
-pdf("figures/adjusted models.pdf", width=8, height=6)
+pdf("figures/Figure4_Augmented_models.pdf", width=8, height=6)
   source("plot_adjustments.R")
 dev.off()
 
@@ -153,4 +173,4 @@ if(exists("cl")) {
   stopCluster(cl)
 }
 
-#save.image("data/data_products/simulated_results_altered.RData") #save output for long simulations
+save.image("data/data_products/simulated_results_altered.RData") #save output for long simulations
