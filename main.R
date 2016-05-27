@@ -50,7 +50,7 @@ dev.off()
 ############################################################
 #Plot bi-variate relationships
 ############################################################
-pdf("figures/FigureS1_BivariatePlots.pdf",width=6, height=6)
+pdf("figures/FigureS2_BivariatePlots.pdf",width=6, height=6)
   par(mfcol=c(3,2), mar=c(3,3,2,2), oma=c(1,1,0,0))
   source("make_bivariate_plot.R")
 dev.off()
@@ -94,12 +94,12 @@ pdf("figures/Figure2_fit_figure.pdf", width=8, height=12)
 dev.off()
 
 #Fit by diversity level
-pdf("figures/FigureS2_species_fits.pdf", width=6, height=10)  
+pdf("figures/FigureS3_species_fits.pdf", width=6, height=10)  
   par(mfrow=c(7,2), mar=c(2,2,2,2), oma=c(3,3,0,0))
   source("plot_species_level.R")
 dev.off()
 
-pdf("figures/FigureS3_richness_fits.pdf", width=8, height=8)
+pdf("figures/FigureS4_richness_fits.pdf", width=8, height=8)
   source("richness_level_plots.R")
 dev.off()
 

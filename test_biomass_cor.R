@@ -141,7 +141,7 @@ dev.off()
 pvcutoff<-0.05
 fglst<-c("C3", "C4", "F", "L")[c(3,4,2,3,1,4,3,4,2,4,1,2,3,2)]
 
-pdf("figures/FigureS4_Competition_regression_table.pdf", width=5, height=4.5)
+pdf("figures/FigureS1_Competition_regression_table.pdf", width=5, height=4.5)
 par(mar=c(5,5,5,5))
 plot(c(0, 1), c(0, 1), type="n", axes=F, xlab="", ylab="", yaxs="i", xaxs="i")
 sq<-seq(0, 1, length=(length(ord)))

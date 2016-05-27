@@ -4,7 +4,7 @@ tableS1<-data.frame(tradeoffdat[,c("Species", "no3", "sd_no3", "abv", "sd_abv", 
 tableS1$e120_abv<-NA
 tableS1$e120_abv[tableS1$ine120]<-e120_abv
 
-tableS1$no3_snapped<-10^(trout$possnap[,"no3"])
+tableS1$no3_snapped<-10^(-trout$possnap[,"no3"])
 tableS1$abv_snapped<-10^(trout$possnap[,"abv"])
 tableS1$ptisn_snapped<-ilogit(trout$possnap[,"ptisn"])
 

@@ -29,6 +29,8 @@ subs<-which(agmondatall$monoculture%in%c("Andropogon gerardi", "Schizachyrium sc
 agmondatall<-agmondatall[subs,]
 
 plot(c(0, 0.5), c(0, 0.5), type="n", xlab="", ylab="")
+put.fig.letter("A.", location = "topleft", offset=c(0.05, 0), cex=1.5)
+
 tmp<-agmondatall[agmondatall$monoculture=="Andropogon gerardi",]
 points(tmp$totaln, tmp$no3, pch=1, lwd=1)
 abline(mand<-lm(no3~totaln, tmp), lwd=1.51)
@@ -79,6 +81,7 @@ plot(ag_old$est[,1], ag_old$obs[,1], pch=as.numeric(as.factor(ag_old$sp)),
      log="xy", lwd=1.51, xlim=lims, ylim=lims,
      xlab="",
      ylab="")
+put.fig.letter("B.", location = "topleft", offset=c(0.05, 0), cex=1.5)
 
 segments(ag_old$est[,1], exp(log(ag_old$obs[,1])+ag_old$obs[,2]/sqrt(ag_old$obs[,3])), ag_old$est[,1], exp(log(ag_old$obs[,1])-ag_old$obs[,2]/sqrt(ag_old$obs[,3])), lend=2, lwd=1.51)
 segments(exp(log(ag_old$est[,1])+ag_old$est[,2]/sqrt(ag_old$est[,3])), ag_old$obs[,1], exp(log(ag_old$est[,1])-ag_old$est[,2]/sqrt(ag_old$est[,3])), ag_old$obs[,1], lend=2, lwd=1.51)
@@ -92,6 +95,7 @@ plot(ag_new$est[,1], ag_new$obs[,1], pch=as.numeric(as.factor(ag_new$sp)),
      log="xy", lwd=1.51, xlim=lims, ylim=lims,
      xlab="",
      ylab="")
+put.fig.letter("C.", location = "topleft", offset=c(0.05, 0), cex=1.5)
 
 segments(ag_new$est[,1], exp(log(ag_new$obs[,1])+ag_new$obs[,2]/sqrt(ag_new$obs[,3])), ag_new$est[,1], exp(log(ag_new$obs[,1])-ag_new$obs[,2]/sqrt(ag_new$obs[,3])), lend=2, lwd=1.51)
 segments(exp(log(ag_new$est[,1])+ag_new$est[,2]/sqrt(ag_new$est[,3])), ag_new$obs[,1], exp(log(ag_new$est[,1])-ag_new$est[,2]/sqrt(ag_new$est[,3])), ag_new$obs[,1], lend=2, lwd=1.51)
@@ -122,6 +126,8 @@ matplot(agpolydatall$LP, agpolydatall[,c("AC", "LC", "PP")],
         xlab="",
         ylab="",
         xlim=c(0, 85))
+put.fig.letter("D.", location = "topleft", offset=c(0.05, 0), cex=1.5)
+
 lpseq<-seq(0, max(agpolydatall$LP), length=100)
 for(i in 1:3) {
   moddat<-data.frame(agpolydatall[,c(3, 3+i)])
@@ -171,6 +177,7 @@ plot(ag_old$est[,1], ag_old$obs[,1], pch=c(0, 13, 6, 5)[as.numeric(as.factor(ag_
      log="xy", lwd=1.51, xlim=lims, ylim=lims,
      xlab="",
      ylab="")
+put.fig.letter("E.", location = "topleft", offset=c(0.05, 0), cex=1.5)
 
 segments(ag_old$est[,1], exp(log(ag_old$obs[,1])+ag_old$obs[,2]/sqrt(ag_old$obs[,3])), ag_old$est[,1], exp(log(ag_old$obs[,1])-ag_old$obs[,2]/sqrt(ag_old$obs[,3])), lend=2, lwd=1.51)
 segments(exp(log(ag_old$est[,1])+ag_old$est[,2]/sqrt(ag_old$est[,3])), ag_old$obs[,1], exp(log(ag_old$est[,1])-ag_old$est[,2]/sqrt(ag_old$est[,3])), ag_old$obs[,1], lend=2, lwd=1.51)
@@ -192,6 +199,7 @@ plot(ag_new$est[,1], ag_new$obs[,1], pch=c(0, 13, 6, 5)[as.numeric(as.factor(ag_
      log="xy", lwd=1.51, xlim=lims, ylim=lims,
      xlab="",
      ylab="")
+put.fig.letter("F.", location = "topleft", offset=c(0.05, 0), cex=1.5)
 
 segments(ag_new$est[,1], exp(log(ag_new$obs[,1])+ag_new$obs[,2]/sqrt(ag_new$obs[,3])), ag_new$est[,1], exp(log(ag_new$obs[,1])-ag_new$obs[,2]/sqrt(ag_new$obs[,3])), lend=2, lwd=1.51)
 segments(exp(log(ag_new$est[,1])+ag_new$est[,2]/sqrt(ag_new$est[,3])), ag_new$obs[,1], exp(log(ag_new$est[,1])-ag_new$est[,2]/sqrt(ag_new$est[,3])), ag_new$obs[,1], lend=2, lwd=1.51)
@@ -218,6 +226,8 @@ subs<-which(agmondatall$monoculture%in%c("Poa pratensis", "Achillea millefolium(
 agmondatall<-agmondatall[subs,]
 
 plot(c(5.5, 8.5), c(15, 170), type="n", xlab="", ylab="", axes=F, log="y")
+put.fig.letter("G.", location = "topleft", offset=c(0.05, 0), cex=1.5)
+
 axis(2); axis(1, 6:8, c("June", "July", "August")); box()
 
 subslst<-as.character(sort(unique(agmondatall$monoculture)))
@@ -279,6 +289,7 @@ plot(ag_old$est[,1], ag_old$obs[,1], pch=c(18,15,15)[as.numeric(as.factor(ag_old
      xlab="",
      ylab="",
      type="n")
+put.fig.letter("H.", location = "topleft", offset=c(0.05, 0), cex=1.5)
 
 segments(ag_old$est[,1], exp(log(ag_old$obs[,1])+ag_old$obs[,2]/sqrt(ag_old$obs[,3])), ag_old$est[,1], exp(log(ag_old$obs[,1])-ag_old$obs[,2]/sqrt(ag_old$obs[,3])), lend=2, lwd=1.51)
 segments(exp(log(ag_old$est[,1])+ag_old$est[,2]/sqrt(ag_old$est[,3])), ag_old$obs[,1], exp(log(ag_old$est[,1])-ag_old$est[,2]/sqrt(ag_old$est[,3])), ag_old$obs[,1], lend=2, lwd=1.51)
@@ -299,6 +310,7 @@ plot(ag_new$est[,1], ag_new$obs[,1], pch=c(18,15,15)[as.numeric(as.factor(ag_new
      xlab="",
      ylab="",
      type="n")
+put.fig.letter("I.", location = "topleft", offset=c(0.05, 0), cex=1.5)
 
 segments(ag_new$est[,1], exp(log(ag_new$obs[,1])+ag_new$obs[,2]/sqrt(ag_new$obs[,3])), ag_new$est[,1], exp(log(ag_new$obs[,1])-ag_new$obs[,2]/sqrt(ag_new$obs[,3])), lend=2, lwd=1.51)
 segments(exp(log(ag_new$est[,1])+ag_new$est[,2]/sqrt(ag_new$est[,3])), ag_new$obs[,1], exp(log(ag_new$est[,1])-ag_new$est[,2]/sqrt(ag_new$est[,3])), ag_new$obs[,1], lend=2, lwd=1.51)
