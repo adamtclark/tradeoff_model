@@ -46,7 +46,7 @@ for(iternumber in 1:4) {
 
 
 #plot
-collst<-c("dimgrey", "black")
+collst<-c("darkgrey", "black")
 adj<-c(-0.325, 0.1625, -0.1625, 0.325, 0)
 srichlst<-c(2,4,8,16)
 pvallevels<-c(0.1, 0.05, 0.01, 0.001)
@@ -62,7 +62,7 @@ for(plti in 1:2) {
   put.fig.letter(label = c("A.", "B.")[plti], location = "topleft", cex=2, x=0.04, y=0.98)  
   axis(2, cex.axis=1.3)
   axis(1, 1:4, c("2", "4", "8", "16"), cex.axis=1.3)
-  abline(h=seq(2, 14, by=2), v=c(0.5, 1.5, 2.5, 3.5, 4.5), col="grey")
+  abline(h=seq(2, 14, by=2), v=c(0.5, 1.5, 2.5, 3.5, 4.5), col="lightgrey")
   box()
   
   #observed richness

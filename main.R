@@ -65,33 +65,33 @@ save.image("data/data_products/simulated_results.RData") #save output for long s
 ############################################################
 # plot outputs
 ############################################################
-#Get plots of prediction fits and CD
-pdf("figures/Figure2_fit_figure.pdf", width=8, height=12)
-  source("aggregate_data.R") #observed vs. fitted
-  source("get_rsquared_intervals.R") #MAE fit for biomass by diversity level
-  source("get_richness_metrics.R") #observed vs. sampled diversity
-
-  #make figure labels
-  mtext("Planted Richness", 1, line=-44.5, cex=1.5, outer=T)
-  mtext(expression(paste("Observed Biomass, g m"^"-2", sep="")), 2, line=0.4, cex=1.5, outer=T, adj=0.18)
-  mtext(expression(paste("Predicted Biomass, g m"^"-2", sep="")), 1, line=2, cex=1.5, outer=T, adj=0.5)
-
-  mtext(expression(paste("MAE, fold change", sep="")), 2, line=0.4, cex=1.5, outer=T, adj=0.68)
-  mtext("Sample Richness", 2, line=0.85, cex=1.5, outer=T, adj=0.965)
-
-  mtext("With Snapping", 4, line=-1, cex=1, outer=T, adj=0.081)
-  mtext("Without Snapping", 4, line=-1, cex=1, outer=T, adj=0.33)
+  #Get plots of prediction fits and CD
+  pdf("figures/Figure2_fit_figure.pdf", width=8, height=12)
+    source("aggregate_data.R") #observed vs. fitted
+    source("get_rsquared_intervals.R") #MAE fit for biomass by diversity level
+    source("get_richness_metrics.R") #observed vs. sampled diversity
   
-  adj<-0.19
-  mtext("Species-Level Biomass", 1, line=-40.5, cex=1, outer=T, adj=adj)
-  mtext("Total Plot Biomass", 1, line=-40.5, cex=1, outer=T, adj=1-adj)
+    #make figure labels
+    mtext("Planted Richness", 1, line=-44.5, cex=1.5, outer=T)
+    mtext(expression(paste("Observed Biomass, g m"^"-2", sep="")), 2, line=0.4, cex=1.5, outer=T, adj=0.18)
+    mtext(expression(paste("Predicted Biomass, g m"^"-2", sep="")), 1, line=2, cex=1.5, outer=T, adj=0.5)
   
-  mtext("Species-Level Biomass", 1, line=-66, cex=1, outer=T, adj=adj)
-  mtext("Total Plot Biomass", 1, line=-66, cex=1, outer=T, adj=1-adj)
-
-  mtext("Without Intraspecific Variation", 1, line=-86.5, cex=1, outer=T, adj=adj-0.04)
-  mtext("With Intraspecific Variation", 1, line=-86.5, cex=1, outer=T, adj=1-adj+0.04)
-dev.off()
+    mtext(expression(paste("MAE, fold change", sep="")), 2, line=0.4, cex=1.5, outer=T, adj=0.68)
+    mtext("Sample Richness", 2, line=0.85, cex=1.5, outer=T, adj=0.965)
+  
+    mtext("With Snapping", 4, line=-1, cex=1, outer=T, adj=0.081)
+    mtext("Without Snapping", 4, line=-1, cex=1, outer=T, adj=0.33)
+    
+    adj<-0.19
+    mtext("Species Abundance", 1, line=-40, cex=1, outer=T, adj=adj)
+    mtext("Net Primary Productivity", 1, line=-40, cex=1, outer=T, adj=1-adj)
+    
+    mtext("Species Abundance", 1, line=-65.5, cex=1, outer=T, adj=adj)
+    mtext("Net Primary Productivity", 1, line=-65.5, cex=1, outer=T, adj=1-adj)
+  
+    mtext("Without Intraspecific Variation", 1, line=-86, cex=1, outer=T, adj=adj-0.04)
+    mtext("With Intraspecific Variation", 1, line=-86, cex=1, outer=T, adj=1-adj+0.04)
+  dev.off()
 
 #Fit by diversity level
 pdf("figures/FigureS3_species_fits.pdf", width=6, height=10)  
@@ -147,22 +147,11 @@ alter_probability<-0.8
 source("run_simulations_altered.R")
 datout_alteredlst[[2]]<-datout_altered
 
-#Early season
-lowerdlim<-2 #revert Poapr to monoculture biomass up to which diversity level?
-alter_whichspecies<-rev(which(splst%in%c("Poapr")))
-alter_whichno3<-(1:length(splst))
-alter_whichrichness<-c(4,8,16)
-alter_probability<-1/3
-
-source("run_simulations_altered.R")
-datout_alteredlst[[3]]<-datout_altered
-
 #make plots
 datout_altered_andge<-datout_alteredlst[[1]]
 datout_altered_luppe<-datout_alteredlst[[2]]
-datout_altered_early<-datout_alteredlst[[3]]
 
-pdf("figures/Figure4_Augmented_models.pdf", width=8, height=6)
+pdf("figures/Figure4_Augmented_models.pdf", width=8, height=4)
   source("plot_adjustments.R")
 dev.off()
 

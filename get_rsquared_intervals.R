@@ -53,8 +53,8 @@ for(itype in 1:2) {
   } else {
     sq<-log10(seq(0.1, 12, by=c(0.1)))
   }
-  abline(h=sq[-which(sq==0)], col="grey")
-  abline(v=seq(1, 5, by=1), col="grey")
+  abline(h=sq[-which(sq==0)], col="lightgrey")
+  abline(v=seq(0.5, 5.5, by=1), col="lightgrey")
   
   axis(2, sq, round(10^(sq),1)-1, cex.axis=1.3)
   
@@ -63,7 +63,7 @@ for(itype in 1:2) {
   box()
   
   adj<-c(-0.2, 0.1, -0.1, 0.2)
-  collst<-c("dimgrey", "black")
+  collst<-c("darkgrey", "black")
   
   #No snapping
   rsuse<-rsqlst_1[rsqlst_1$type==type,]

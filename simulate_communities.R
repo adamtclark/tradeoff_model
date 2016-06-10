@@ -214,7 +214,7 @@ p1<-10^(log10(snums)+0.02)
 plot(snums, smdat$plottot, col="blue", lwd=2, ylim=c(50, 225),
      xlab="Planted Richness", ylab=expression(paste("Aboveground Biomass, g m"^-2)), axes=F, type="n",
      cex.lab=1.2, log="xy")
-abline(h=seq(0, 250, by=25), v=snums, col="grey")
+abline(h=seq(0, 250, by=25), v=snums, col="lightgrey")
 axis(2, at=c(50, 75, 100, 150, 200), cex.axis=1.5); axis(1, at=snums, c(1, 2, 4, 8, 16), cex.axis=1.5); box()
 
 lines(p1, obsdat$obs, col="black", lwd=4)
@@ -224,15 +224,15 @@ put.fig.letter(label = "A.", location = "topleft", cex=2, x=0.04, y=0.97)
 
 hi<-10^(log10(obsdat$obs)+obsdatsd$obs/sqrt(obsdatsd_n$obs))
 lw<-10^(log10(obsdat$obs)-obsdatsd$obs/sqrt(obsdatsd_n$obs))
-segments(p1, hi, p1, lw, lwd=4)
-segments(p1, hi, p1, lw, lwd=2, col="white")
+segments(p1, hi, p1, lw, lwd=4, lend=2)
+segments(p1, hi, p1, lw, lwd=2, col="white", lend=2)
 lines(p1, obsdat$obs, col="white", lwd=2)
 
 lines(p2, (smdat$plottot), col="black", lwd=3)
 
 hi<-10^(log10(smdat$plottot)+smdatsd$plottot/sqrt(obsdatsd_n$obs))
 lw<-10^(log10(smdat$plottot)-smdatsd$plottot/sqrt(obsdatsd_n$obs))
-segments(p2, hi, p2, lw, lwd=3)
+segments(p2, hi, p2, lw, lwd=3, lend=2)
 
 #Calculate and plot R-squared/p-values
 if(printr2) {
@@ -289,9 +289,10 @@ n<-1
 for(i in c(2,4,8,16)) {
   plot(c(min(spxlst), max(spxlst)), c(0.1, 110), col="blue", lwd=2,
        xlab="", ylab="", axes=F, type="n", log="xy",
-       cex.lab=1.2,
-       main=paste("Planted Richness =", i))
-  abline(h=c(0.1, 1, 10, 100), v=spxlst, col="grey")
+       cex.lab=1.2)
+  mtext(paste("Planted Richness =", i), side = 3, cex=0.8, line = -0.1)
+  
+  abline(h=c(0.1, 1, 10, 100), v=spxlst, col="lightgrey")
   axis(2, at=c(0.1, 1, 10, 100), cex.axis=1); axis(1, at=spxlst, spxlst, cex.axis=1); box()
   put.fig.letter(label = c("B.", "C.", "D.", "E.")[n],
                  location = "topleft", cex=2, x=0.06, y=0.95, xpd=T)
@@ -365,8 +366,8 @@ for(i in c(2,4,8,16)) {
     rd<-paste(" =", round(rsqest, 2))
     pv<-paste(" <", ceiling(pvest*1000)/1000)
     
-    text(4, 90, bquote(.(r[1])^2 ~ .(rd[1])), cex=1.2, pos=4)
-    text(4, 40, bquote(.(p[1]) ~ .(pv[1])), cex=1.2, pos=4)
+    text(3.8, 75, bquote(.(r[1])^2 ~ .(rd[1])), cex=1.2, pos=4)
+    text(3.8, 30, bquote(.(p[1]) ~ .(pv[1])), cex=1.2, pos=4)
   }
   
   n<-n+1
