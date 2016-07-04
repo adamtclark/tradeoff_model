@@ -245,3 +245,4 @@ tmp2<-with(datout_old[datout_old$sp%in%includesp & datout_old$plantedsr>1,], agg
 MAEyesintra<-round(10^mean(tmp1$res)-1, 2)
 MAEnointra<-round(10^mean(tmp2$res)-1, 2)
 pv<-wilcox.test(tmp1$res, tmp2$res, paired=T)$p.value
+
