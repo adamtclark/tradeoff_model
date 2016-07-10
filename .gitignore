@@ -3,5 +3,6 @@
 *.so
 .Rhistory
 hpcout
-figures/Figure1_tradeoff_surface_3D_pretty.pdf
+figures/*
+data/data_products/*
 *.RData
