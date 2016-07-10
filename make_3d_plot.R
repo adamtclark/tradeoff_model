@@ -281,7 +281,7 @@ points(xfit, qBfit,
 
 #label axes
 mtext(expression(paste(widehat(italic("R")), "*",", mg kg"^-1, sep="")), 1, line=2.5, cex=0.8)
-mtext(expression(paste(widehat(italic(qB)), "*", ", g m"^-2, sep="")), 2, line=2.2, cex=0.8)
+mtext(expression(paste(widehat(italic(qB)), "*"[italic(mono)], ", g m"^-2, sep="")), 2, line=2.2, cex=0.8)
 
 #label E120 species
 text(xfit[tradeoffdat[kp,]$ine120], qBfit[tradeoffdat[kp,]$ine120], splst, pos=3)

@@ -93,16 +93,6 @@ save.image("data/data_products/simulated_results.RData") #save output for long s
     mtext("With Intraspecific Variation", 1, line=-86, cex=1, outer=T, adj=1-adj+0.04)
   dev.off()
 
-#Fit by diversity level
-pdf("figures/FigureS3_species_fits.pdf", width=6, height=10)  
-  par(mfrow=c(7,2), mar=c(2,2,2,2), oma=c(3,3,0,0))
-  source("plot_species_level.R")
-dev.off()
-
-pdf("figures/FigureS4_richness_fits.pdf", width=8, height=8)
-  source("richness_level_plots.R")
-dev.off()
-
 ############################################################
 # simulate from tradeoff surface
 ############################################################
@@ -153,6 +143,10 @@ datout_altered_luppe<-datout_alteredlst[[2]]
 
 pdf("figures/Figure4_Augmented_models.pdf", width=8, height=4)
   source("plot_adjustments.R")
+dev.off()
+
+pdf("figures/FigureS3_seasonality_effects.pdf", width=6, height=10)  
+  source("plot_early_season.R")
 dev.off()
 
 ############################################################
