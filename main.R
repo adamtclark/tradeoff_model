@@ -145,7 +145,7 @@ pdf("figures/Figure4_Augmented_models.pdf", width=8, height=4)
   source("plot_adjustments.R")
 dev.off()
 
-pdf("figures/FigureS3_seasonality_effects.pdf", width=6, height=10)  
+pdf("figures/FigureS3_seasonality_effects.pdf", width=6, height=4)  
   source("plot_early_season.R")
 dev.off()
 
