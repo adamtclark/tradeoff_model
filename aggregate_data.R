@@ -1,13 +1,9 @@
 #Set up plot
-m<-rbind(c(7,7,7,7,8,8,8,8),
+m<-rbind(c(5,5,5,5,6,6,6,6),
+         c(5,5,5,5,6,6,6,6),
+         c(5,5,5,5,6,6,6,6),
+         c(5,5,5,5,6,6,6,6),
          c(7,7,7,7,8,8,8,8),
-         c(7,7,7,7,8,8,8,8),
-         c(7,7,7,7,8,8,8,8),
-         c(5,5,5,5,6,6,6,6),
-         c(5,5,5,5,6,6,6,6),
-         c(5,5,5,5,6,6,6,6),
-         c(5,5,5,5,6,6,6,6),
-         c(9,9,9,9,10,10,10,10),
          c(1,1,1,1,2,2,2,2),
          c(1,1,1,1,2,2,2,2),
          c(1,1,1,1,2,2,2,2),
@@ -20,7 +16,7 @@ m<-rbind(c(7,7,7,7,8,8,8,8),
 layout(m)
 replacelower<-log10(0.02) #0.0025 quantile - 99.9% interval
 
-par(mar=c(2,2.5,2,2), oma=c(3,3,1,1))
+par(mar=c(2,2.5,2,2), oma=c(3,3,1,0))
 
 
 #Plot data
@@ -52,10 +48,13 @@ for(usetr in 1:2) {
        cex.axis=1.3,
        xlim=c(replacelower, log10(max(datout[subs,]$est))),
        ylim=c(replacelower, log10(max(datout[subs,]$obs))))
+  text(replacelower, log10(max(datout[subs,]$obs)),
+       c("without snapping", "with snapping")[usetr], cex=1.8, adj=c(0,1))
+  
   if(usetr==2) {
-    put.fig.letter(label = "G.", location = "topleft", cex=2, x=0.04, y=0.98)
-  } else {
     put.fig.letter(label = "E.", location = "topleft", cex=2, x=0.04, y=0.98)
+  } else {
+    put.fig.letter(label = "C.", location = "topleft", cex=2, x=0.04, y=0.98)
   }
   
   sq0<-c(0.1, 1, 10, 100)
@@ -176,10 +175,13 @@ for(usetr in 1:2) {
        xlab="", ylab="",
        axes=F,
        cex.axis=1.3)
+  text(min(log10(agdat_plot$est)), max(log10(agdat_plot$obs)),
+       c("without snapping", "with snapping")[usetr], cex=1.8, adj=c(0,1))
+  
   if(usetr==2) {
-    put.fig.letter(label = "H.", location = "topleft", cex=2, x=0.04, y=0.98)
-  } else {
     put.fig.letter(label = "F.", location = "topleft", cex=2, x=0.04, y=0.98)
+  } else {
+    put.fig.letter(label = "D.", location = "topleft", cex=2, x=0.04, y=0.98)
   }
   
   sq<-c(25, 50, 100, 200, 400)

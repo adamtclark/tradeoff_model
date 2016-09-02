@@ -65,33 +65,35 @@ save.image("data/data_products/simulated_results.RData") #save output for long s
 ############################################################
 # plot outputs
 ############################################################
-  #Get plots of prediction fits and CD
-  pdf("figures/Figure2_fit_figure.pdf", width=8, height=12)
-    source("aggregate_data.R") #observed vs. fitted
-    source("get_rsquared_intervals.R") #MAE fit for biomass by diversity level
-    source("get_richness_metrics.R") #observed vs. sampled diversity
+#Get plots of prediction fits and CD
+pdf("figures/Figure2_fit_figure.pdf", width=8, height=9)
+  source("aggregate_data.R") #observed vs. fitted
+  source("get_rsquared_intervals.R") #MAE fit for biomass by diversity level
   
-    #make figure labels
-    mtext("Planted Richness", 1, line=-44.5, cex=1.5, outer=T)
-    mtext(expression(paste("Observed Biomass, g m"^"-2", sep="")), 2, line=0.4, cex=1.5, outer=T, adj=0.18)
-    mtext(expression(paste("Predicted Biomass, g m"^"-2", sep="")), 1, line=2, cex=1.5, outer=T, adj=0.5)
+  #make figure labels
+  mtext("Planted Richness", 1, line=-43, cex=1.5, outer=T)
+  mtext(expression(paste("Observed Biomass, g m"^"-2", sep="")), 2, line=0.4, cex=1.5, outer=T, adj=0.27)
+  mtext(expression(paste("Predicted Biomass, g m"^"-2", sep="")), 1, line=2, cex=1.5, outer=T, adj=0.5)
+
+  mtext(expression(paste("MAE, fold change", sep="")), 2, line=0.4, cex=1.5, outer=T, adj=0.94)
   
-    mtext(expression(paste("MAE, fold change", sep="")), 2, line=0.4, cex=1.5, outer=T, adj=0.68)
-    mtext("Sample Richness", 2, line=0.85, cex=1.5, outer=T, adj=0.965)
+  adj<-0.19
+  mtext("Species Abundance", 1, line=-39.2, cex=1, outer=T, adj=adj)
+  mtext("Net Primary Productivity", 1, line=-39.2, cex=1, outer=T, adj=1-adj)
   
-    mtext("With Snapping", 4, line=-1, cex=1, outer=T, adj=0.081)
-    mtext("Without Snapping", 4, line=-1, cex=1, outer=T, adj=0.33)
-    
-    adj<-0.19
-    mtext("Species Abundance", 1, line=-40, cex=1, outer=T, adj=adj)
-    mtext("Net Primary Productivity", 1, line=-40, cex=1, outer=T, adj=1-adj)
-    
-    mtext("Species Abundance", 1, line=-65.5, cex=1, outer=T, adj=adj)
-    mtext("Net Primary Productivity", 1, line=-65.5, cex=1, outer=T, adj=1-adj)
+  mtext("Species Abundance", 1, line=-64, cex=1, outer=T, adj=adj)
+  mtext("Net Primary Productivity", 1, line=-64, cex=1, outer=T, adj=1-adj)
+dev.off()
+
+pdf("figures/FigureS3_intraspecific_varaition.pdf", width=8, height=4)
+  par(mfrow=c(1,2), oma=c(1,1,1,0), mar=c(3,3,2,1))
+  source("get_richness_metrics.R") #observed vs. sampled diversity
+  mtext("Sample Richness", 2, line=-0.5, cex=1.5, outer=T)
+  mtext("Planted Richness", 1, line=-0.5, cex=1.5, outer=T)
   
-    mtext("Without Intraspecific Variation", 1, line=-86, cex=1, outer=T, adj=adj-0.04)
-    mtext("With Intraspecific Variation", 1, line=-86, cex=1, outer=T, adj=1-adj+0.04)
-  dev.off()
+  mtext("Without Intraspecific Variation", 3, line=-0.5, cex=1, outer=T, adj=0.15)
+  mtext("With Intraspecific Variation", 3, line=-0.5, cex=1, outer=T, adj=0.85)
+dev.off()
 
 ############################################################
 # simulate from tradeoff surface
@@ -145,7 +147,7 @@ pdf("figures/Figure4_Augmented_models.pdf", width=8, height=4)
   source("plot_adjustments.R")
 dev.off()
 
-pdf("figures/FigureS3_seasonality_effects.pdf", width=6, height=4)  
+pdf("figures/FigureS4_seasonality_effects.pdf", width=6, height=4)  
   source("plot_early_season.R")
 dev.off()
 

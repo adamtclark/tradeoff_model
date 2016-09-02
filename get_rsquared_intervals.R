@@ -46,7 +46,7 @@ for(itype in 1:2) {
   ylims1<-min(c(rsqlst_1[rsqlst_1$type==type,]$l025, rsqlst_2[rsqlst_1$type==type,]$l025))
   plot(c(0.5,5.5), c(ylims1,ylims2), axes=F, type="n", xlab="", ylab="",
        cex.axis=1.3)
-  put.fig.letter(label = c("C.", "D.")[itype], location = "topleft", cex=2, x=0.04, y=0.98)
+  put.fig.letter(label = c("A.", "B.")[itype], location = "topleft", cex=2, x=0.04, y=0.98)
   
   if(itype==1) {
     sq<-log10(c(1,2,3,5,9))
