@@ -31,7 +31,7 @@ dattot$exp[dattot$exp=="e249"]<-"e120"
 ##############
 #Apply rule 1: Remove high total soil N
 ##############
-#1a. remove fertilized plot in E26 (#TODO check this)
+#1a. remove fertilized plot in E26
 dattot<-dattot[!(dattot$exp=="e026"&dattot$plot==5),]
 
 #1b. in E26 and E55, remove blocks with mean total soil N
