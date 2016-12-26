@@ -51,8 +51,12 @@ dev.off()
 #Plot bi-variate relationships
 ############################################################
 pdf("figures/FigureS2_BivariatePlots.pdf",width=6, height=6)
-  par(mfcol=c(3,2), mar=c(3,3,2,2), oma=c(1,1,0,0))
+  m2<-cbind(c(1,2,3,7), c(4,5,6,7))
+  layout(m2)
+  par(mar=c(3,3,2,2), oma=c(1,1,0,0))
+  
   source("make_bivariate_plot.R")
+  source("make_qB_plot.R")
 dev.off()
 
 ############################################################
