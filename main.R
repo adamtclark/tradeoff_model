@@ -1,5 +1,5 @@
 #!/usr/bin/env Rscript
-setwd("~/Dropbox/Active Work/Projects/001_rescomp_thesis/tradeoff_model/")
+#setwd("~/Dropbox/ActiveWork/Projects/001_rescomp_thesis/tradeoff_model/")
 rm(list=ls())
 
 ############################################################
@@ -83,10 +83,10 @@ pdf("figures/Figure3_fit_figure.pdf", width=8, height=9)
   
   adj<-0.19
   mtext("Species Abundance", 1, line=-39.2, cex=1, outer=T, adj=adj)
-  mtext("Net Primary Productivity", 1, line=-39.2, cex=1, outer=T, adj=1-adj)
+  mtext("Total Plot-Level Aboveground Biomass", 1, line=-39.2, cex=1, outer=T, adj=1-adj)
   
   mtext("Species Abundance", 1, line=-64, cex=1, outer=T, adj=adj)
-  mtext("Net Primary Productivity", 1, line=-64, cex=1, outer=T, adj=1-adj)
+  mtext("Total Plot-Level Aboveground Biomass", 1, line=-64, cex=1, outer=T, adj=1-adj)
 dev.off()
 
 pdf("figures/FigureS3_intraspecific_varaition.pdf", width=8, height=4)

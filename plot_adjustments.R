@@ -188,7 +188,7 @@ points(ag_old$est[subs,1], ag_old$obs[subs,1], pch=13, lwd=0.8)
 text(ul, bl2, paste("MAE =", round(10^mean(tmp2$res)-1, 2)), adj=c(0,0), cex=1.2)
 
 
-mtext(expression(paste("Observed Biomass, g m"^-2)), side = 2, line=3, cex=1.2,
+mtext(expression(paste("Observed Abundance, g m"^-2)), side = 2, line=3, cex=1.2,
       adj=-0.4)
 #adj
 plot(ag_new$est[,1], ag_new$obs[,1], pch=c(0, 13, 6, 5)[as.numeric(as.factor(ag_new$sp))],
@@ -214,7 +214,7 @@ text(ul, bl2, paste("p <", ceiling(pv*1000)/1000), adj=c(0,0), cex=1.2)
 ############################################################
 #Labels
 ############################################################
-mtext(expression(paste("Predicted Biomass, g m"^-2)), side = 1, outer = TRUE, adj = 0.8, line=2, cex=1.2)
+mtext(expression(paste("Predicted Abundance, g m"^-2)), side = 1, outer = TRUE, adj = 0.8, line=2, cex=1.2)
 mtext("Original Model", side = 3, outer = TRUE, adj = 0.48, line=-3.4, cex=0.9)
 mtext("Augmented Model", side = 3, outer = TRUE, adj = 0.87, line=-3.4, cex=0.9)
 
