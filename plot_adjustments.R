@@ -115,20 +115,26 @@ for(i in 2:4) {
   agpolydatall[agpolydatall$plot%in%pltlst,i+2]<-NA
 }
 
-matplot(agpolydatall$LP, agpolydatall[,c("AC", "LC", "PP")],
+tmpLeg<-agpolydatall$LP
+tmpLeg[tmpLeg==0]<-runif(sum(tmpLeg==0), -1, 1)
+matplot(tmpLeg, agpolydatall[,c("AC", "LC", "PP")],
         pch=c(0, 13, 5),
         col=1,
+        cex=0.8,
         xlab="",
         ylab="",
-        xlim=c(0, 85))
+        xlim=c(0, 85),
+        ylim=c(0,150))
 put.fig.letter("D.", location = "topleft", offset=c(0.05, -0.05), cex=1.5)
 
 lpseq<-seq(0, max(agpolydatall$LP), length=100)
+Lllst<-c(3,2,1)
+Lcollst<-c(1,1,adjustcolor(1, alpha.f = 0.75))
 for(i in 1:3) {
   moddat<-data.frame(agpolydatall[,c(3, 3+i)])
   colnames(moddat)<-c("LP", "y")
   mod<-loess(y~LP, moddat, span=1.25)
-  lines(lpseq, predict(mod, newdata=data.frame(LP=lpseq)), lty=i, lwd=1.51)
+  lines(lpseq, predict(mod, newdata=data.frame(LP=lpseq)), lty=Lllst[i], lwd=1.51, col=Lcollst[i])
 }
 
 mtext(expression(paste(italic("B"), "* Lupine,", " g m"^-2, sep="")), side = 1, line=2.5)
@@ -189,7 +195,7 @@ text(ul, bl2, paste("MAE =", round(10^mean(tmp2$res)-1, 2)), adj=c(0,0), cex=1.2
 
 
 mtext(expression(paste("Observed Abundance, g m"^-2)), side = 2, line=3, cex=1.2,
-      adj=-0.4)
+      adj=-5.8)
 #adj
 plot(ag_new$est[,1], ag_new$obs[,1], pch=c(0, 13, 6, 5)[as.numeric(as.factor(ag_new$sp))],
      log="xy", lwd=1.51, xlim=lims, ylim=lims,
@@ -214,12 +220,12 @@ text(ul, bl2, paste("p <", ceiling(pv*1000)/1000), adj=c(0,0), cex=1.2)
 ############################################################
 #Labels
 ############################################################
-mtext(expression(paste("Predicted Abundance, g m"^-2)), side = 1, outer = TRUE, adj = 0.8, line=2, cex=1.2)
-mtext("Original Model", side = 3, outer = TRUE, adj = 0.48, line=-3.4, cex=0.9)
-mtext("Augmented Model", side = 3, outer = TRUE, adj = 0.87, line=-3.4, cex=0.9)
+mtext(expression(paste("Predicted Abundance, g m"^-2)), side = 1, outer = TRUE, adj = 0.78, line=2, cex=1.2)
+mtext("Original Model", side = 3, outer = TRUE, adj = 0.46, line=-3.4, cex=0.9)
+mtext("Augmented Model", side = 3, outer = TRUE, adj = 0.833, line=-3.4, cex=0.9)
 
-mtext("Original Model", side = 3, outer = TRUE, adj = 0.48, line=-16.9, cex=0.9)
-mtext("Augmented Model", side = 3, outer = TRUE, adj = 0.87, line=-16.9, cex=0.9)
+mtext("Original Model", side = 3, outer = TRUE, adj = 0.46, line=-24.4, cex=0.9)
+mtext("Augmented Model", side = 3, outer = TRUE, adj = 0.833, line=-24.4, cex=0.9)
 
 
 ############################################################

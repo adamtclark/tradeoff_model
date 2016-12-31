@@ -63,7 +63,7 @@ dev.off()
 # run simulations
 ############################################################
 source("run_simulations.R")
-save.image("data/data_products/simulated_results.RData") #save output for long simulations
+#save.image("data/data_products/simulated_results.RData") #save output for long simulations
 #load("data/data_products/simulated_results.RData")
 
 ############################################################
@@ -105,7 +105,7 @@ dev.off()
 pdf("figures/Figure4_simulated_community.pdf", width=8, height=4)
   source("simulate_communities.R")
 dev.off()
-save.image("data/data_products/simulated_results_simulated.RData") #save output for long simulations
+#save.image("data/data_products/simulated_results_simulated.RData") #save output for long simulations
 
 ############################################################
 # output supplementary tables
@@ -147,7 +147,7 @@ datout_alteredlst[[2]]<-datout_altered
 datout_altered_andge<-datout_alteredlst[[1]]
 datout_altered_luppe<-datout_alteredlst[[2]]
 
-pdf("figures/Figure5_Augmented_models.pdf", width=8, height=4)
+pdf("figures/Figure5_Augmented_models.pdf", width=10, height=6)
   source("plot_adjustments.R")
 dev.off()
 
@@ -162,4 +162,4 @@ if(exists("cl")) {
   stopCluster(cl)
 }
 
-save.image("data/data_products/simulated_results_altered.RData") #save output for long simulations
+#save.image("data/data_products/simulated_results_altered.RData") #save output for long simulations
