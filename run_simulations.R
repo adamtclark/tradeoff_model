@@ -84,7 +84,9 @@ for(iternumber in 1:4) {
       
       est<-esti<-clusterout[1:nsp]
       est_sd<-clusterout[(nsp+1):length(clusterout)]
+      pzero<-as.numeric(is.na(est) | est==0)
     }
+    pzero_est<-pzero
     
     #extract observed biomass from e120
     tmpobs<-as.matrix(e120dat[which(e120dat$Plot==plts[i]),plbmpos[which(ps)]])
@@ -109,6 +111,15 @@ for(iternumber in 1:4) {
     #save mean results
     tmp<-data.frame(sp=as.character(splst[ps]), est=est, est_sd=est_sd, obs=obs, obs_sd=obs_sd, sr=nsp, plt=plts[i])
     tmp$sp<-as.character(tmp$sp)
+    row.names(tmp)<-NULL
+    
+    names(pzero)<-NULL
+    names(pzero_est)<-NULL
+    tmp<-data.frame(tmp, abmi_dat,
+               pNi_dat,
+               no3lst_dat,
+               pzero_est=pzero_est,
+               pzero_obs=pzero)
     row.names(tmp)<-NULL
     datout<-rbind(datout, tmp)
     
