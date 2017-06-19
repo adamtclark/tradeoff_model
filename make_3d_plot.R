@@ -5,6 +5,8 @@ tradeoffdat<-read.csv("data/data_products/filtered_tradeoff_data.csv")
 splst<-c("Achmi", "Amoca", "Andge", "Asctu", "Koecr", "Lesca", "Liaas",
          "Luppe", "Panvi", "Petpu", "Poapr", "Schsc", "Solri", "Sornu")
 
+collstfg<-brewer.pal(4, "Dark2")
+
 #################################################
 # Plot tradeoff surface 3D
 #################################################
@@ -62,15 +64,18 @@ z.pred <- matrix (nrow = ngrid, ncol = ngrid,
 fitpoints <- predict(fit)
 
 par(mar=c(0,0,0,0))
-scatter3D(z = z, x = x, y = y, col=NULL, colvar=NULL,
+scatter3D(z = z, x = x, y = y, colvar=NULL,
           xlab="R*", ylab="B*", zlab="q",
           ylim=c(yrng[1], yrng[2]), xlim=c(xrng[1], xrng[2]), zlim=c(zrng[1], zrng[2]),
           cex=c(1,1.5)[as.numeric((tradeoffdat$fg[kp]=="L")&(tradeoffdat$ine120[kp]))+1],
           pch=c(0:2, 5, 15:18)[as.numeric(as.factor(as.character(tradeoffdat$fg[kp])))+as.numeric(tradeoffdat$ine120[kp])*4],
           type="p",lwd=2, cex.axis = 1e-9,
           theta = 135, phi = 20, ticktype = "detailed",
+          col=collstfg[as.numeric(as.factor(as.character(tradeoffdat$fg[kp])))],
           surf = list(x = x.pred, y = y.pred, z = z.pred,
-                      facets = NA, fit = fitpoints, col=adjustcolor("black", alpha.f = 0.5), lty=0, lwd=1))
+                      facets = NA, fit = fitpoints,
+                      col=adjustcolor("black", alpha.f = 0.5),
+                      lty=0, lwd=1))
 
 text3D(x = c(seq(xrng[1], xrng[2], length=6), rep(xrng[2], 3), rep(xrng[2], 6)), #note axis labels true no3 values
        y = c(rep(yrng[2], 6), seq(yrng[1], yrng[2], length=3), rep(yrng[1], 6)),
@@ -78,15 +83,18 @@ text3D(x = c(seq(xrng[1], xrng[2], length=6), rep(xrng[2], 3), rep(xrng[2], 6)),
        labels = c(round(10^(-seq(xrng[1], xrng[2], length=6)), 2), round(10^seq(yrng[1], yrng[2], length=3), 0), round(ilogit(seq(zrng[1], zrng[2], length=6)),3)),
        add = TRUE, adj = 0)
 
-scatter3D(z = z, x = x, y = y, col=NULL, colvar=NULL,
+scatter3D(z = z, x = x, y = y, colvar=NULL,
           xlab="R*", ylab="B*", zlab="q",
           ylim=c(yrng[1], yrng[2]), xlim=c(xrng[1], xrng[2]), zlim=c(zrng[1], zrng[2]),
           cex=c(1,1.5)[as.numeric((tradeoffdat$fg[kp]=="L")&(tradeoffdat$ine120[kp]))+1],
           pch=c(0:2, 5, 15:18)[as.numeric(as.factor(as.character(tradeoffdat$fg[kp])))+as.numeric(tradeoffdat$ine120[kp])*4],
           type="p",lwd=2, cex.axis = 1e-9, add=TRUE,
           theta = 135, phi = 20, ticktype = "detailed",
+          col=collstfg[as.numeric(as.factor(as.character(tradeoffdat$fg[kp])))],
           surf = list(x = x.pred, y = y.pred, z = z.pred,
-                      facets = NA, fit = fitpoints, col=adjustcolor("black", alpha.f = 0.5), lty=1, lwd=0.8))
+                      facets = NA, fit = fitpoints,
+                      col=adjustcolor("black", alpha.f = 0.5),
+                      lty=1, lwd=0.8))
 
 #calculate mean r-squared (coef. of det.) for total surface
 obs<-trout$vars[is.finite(rowSums(trout$vars)),]
@@ -112,7 +120,7 @@ par(mar=c(3,3,2,1))
 #R*
 ############
 plot(x, xfit,
-     col=1,
+     col=collstfg[as.numeric(as.factor(as.character(tradeoffdat$fg[kp])))],
      pch=c(0:2, 5, 15:18)[as.numeric(as.factor(as.character(tradeoffdat$fg[kp])))+as.numeric(tradeoffdat$ine120[kp])*4],
      lwd=1,
      xlab="",
@@ -155,7 +163,7 @@ put.fig.letter("B.", location = "topleft", offset=c(0.2, -0.05), cex=1.5)
 ############
 plot(y, yfit,
      pch=c(0:2, 5, 15:18)[as.numeric(as.factor(as.character(tradeoffdat$fg[kp])))+as.numeric(tradeoffdat$ine120[kp])*4],
-     col=1,
+     col=collstfg[as.numeric(as.factor(as.character(tradeoffdat$fg[kp])))],
      lwd=1,
      xlab="",
      ylab="",
@@ -199,7 +207,7 @@ put.fig.letter("C.", location = "topleft", offset=c(0.2, -0.05), cex=1.5)
 ############
 plot(z, zfit,
      pch=c(0:2, 5, 15:18)[as.numeric(as.factor(as.character(tradeoffdat$fg[kp])))+as.numeric(tradeoffdat$ine120[kp])*4],
-     col=1,
+     col=collstfg[as.numeric(as.factor(as.character(tradeoffdat$fg[kp])))],
      lwd=1,
      xlab="",
      ylab="",
@@ -274,10 +282,6 @@ text(-0.62, 0, "Liaas - Andge", pos=4, cex=1.1)
 
 box()
 
-#add points
-points(xfit, qBfit,
-  pch=c(0:2, 5, 15:18)[as.numeric(as.factor(as.character(tradeoffdat$fg[kp])))+as.numeric(tradeoffdat$ine120[kp])*4],
-  cex=c(1,1.5)[as.numeric((tradeoffdat$fg[kp]=="L")&(tradeoffdat$ine120[kp]))+1])
 
 #label axes
 mtext(expression(paste(widehat(italic("R")), "*",", mg kg"^-1, sep="")), 1, line=2.5, cex=0.8)
@@ -304,6 +308,11 @@ segments(sdrs[1,tradeoffdat$ine120[kp]],
                    (qBfit)[tradeoffdat$ine120[kp]],
                    sdrs[2,tradeoffdat$ine120[kp]],
                    (qBfit)[tradeoffdat$ine120[kp]], lwd=1)
+#add points
+points(xfit, qBfit,
+       pch=c(0:2, 5, 15:18)[as.numeric(as.factor(as.character(tradeoffdat$fg[kp])))+as.numeric(tradeoffdat$ine120[kp])*4],
+       cex=c(1,1.5)[as.numeric((tradeoffdat$fg[kp]=="L")&(tradeoffdat$ine120[kp]))+1],
+       col=collstfg[as.numeric(as.factor(as.character(tradeoffdat$fg[kp])))])
 
 put.fig.letter("E.", location = "topleft", offset=c(0.154, -0.0255), cex=1.5)
 

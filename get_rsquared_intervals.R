@@ -63,7 +63,7 @@ for(itype in 1:2) {
   box()
   
   adj<-c(-0.2, 0.1, -0.1, 0.2)
-  collst<-c("darkgrey", "black")
+  collst<-adjustcolor(c("red", "blue"), alpha.f = 0.8)
   
   #No snapping
   rsuse<-rsqlst_1[rsqlst_1$type==type,]
