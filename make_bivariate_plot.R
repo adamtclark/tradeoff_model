@@ -1,9 +1,11 @@
 #################################################
 # Bi-variate plots
 #################################################
+collstfg<-brewer.pal(4, "Dark2")
+
 ####RAW
 plot(-x, y,
-     col=1,
+     col=collstfg[as.numeric(as.factor(as.character(tradeoffdat$fg[kp])))],
      pch=c(0:2, 5, 15:18)[as.numeric(as.factor(as.character(tradeoffdat$fg[kp])))+as.numeric(tradeoffdat$ine120[kp])*4],
      lwd=1,
      xlab="",
@@ -20,7 +22,7 @@ axis(1, -log10(sqx), sqx)
 axis(2, log10(sqy), sqy)
 box()
 trouttmp<-nondirfit(data.frame(-x, y))
-r2=trouttmp$rsq$rsq_est_adj
+r2=suppressMessages(lmodel2(-x~y, range.y = "interval", range.x="interval")$rsquare)
 r<-"R"
 rd<-paste(" =", round(r2,3))
 text((max(-x)-min(-x))*0.2+min(-x),
@@ -31,7 +33,7 @@ abline(a=-trouttmp$pars[1]/trouttmp$pars[3], b=-trouttmp$pars[2]/trouttmp$pars[3
 put.fig.letter("A.", location = "topleft", offset=c(0.2, -0.05), cex=1.5)
 
 plot(-x, z,
-     col=1,
+     col=collstfg[as.numeric(as.factor(as.character(tradeoffdat$fg[kp])))],
      pch=c(0:2, 5, 15:18)[as.numeric(as.factor(as.character(tradeoffdat$fg[kp])))+as.numeric(tradeoffdat$ine120[kp])*4],
      lwd=1,
      xlab="",
@@ -47,7 +49,7 @@ axis(1, -log10(sqx), sqx)
 axis(2, logit(sqz), sqz)
 box()
 trouttmp<-nondirfit(data.frame(-x, z))
-r2=trouttmp$rsq$rsq_est_adj
+r2=suppressMessages(lmodel2(-x~z, range.y = "interval", range.x="interval")$rsquare)
 r<-"R"
 rd<-paste(" =", round(r2,3))
 text((max(-x)-min(-x))*0.2+min(-x),
@@ -57,7 +59,7 @@ abline(a=-trouttmp$pars[1]/trouttmp$pars[2], b=-trouttmp$pars[3]/trouttmp$pars[2
 put.fig.letter("B.", location = "topleft", offset=c(0.2, -0.05), cex=1.5)
 
 plot(z, y,
-     col=1,
+     col=collstfg[as.numeric(as.factor(as.character(tradeoffdat$fg[kp])))],
      pch=c(0:2, 5, 15:18)[as.numeric(as.factor(as.character(tradeoffdat$fg[kp])))+as.numeric(tradeoffdat$ine120[kp])*4],
      lwd=1,
      xlab="",
@@ -71,7 +73,7 @@ axis(1, logit(sqz), sqz)
 axis(2, log10(sqy), sqy)
 box()
 trouttmp<-nondirfit(data.frame(z, y))
-r2=trouttmp$rsq$rsq_est_adj
+r2=suppressMessages(lmodel2(z~y, range.y = "interval", range.x="interval")$rsquare)
 r<-"R"
 rd<-paste(" =", round(r2,3))
 text((max(z)-min(z))*0.2+min(z),
@@ -86,7 +88,7 @@ put.fig.letter("C.", location = "topleft", offset=c(0.2, -0.05), cex=1.5)
 xfit<-(-xfit)
 
 plot(xfit, yfit,
-     col=1,
+     col=collstfg[as.numeric(as.factor(as.character(tradeoffdat$fg[kp])))],
      pch=c(0:2, 5, 15:18)[as.numeric(as.factor(as.character(tradeoffdat$fg[kp])))+as.numeric(tradeoffdat$ine120[kp])*4],
      lwd=1,
      xlab="",
@@ -103,7 +105,7 @@ axis(1, -log10(sqx), sqx)
 axis(2, log10(sqy), sqy)
 box()
 trouttmp<-nondirfit(data.frame(xfit, yfit))
-r2=trouttmp$rsq$rsq_est_adj
+r2=suppressMessages(lmodel2(xfit~yfit, range.y = "interval", range.x="interval")$rsquare)
 r<-"R"
 rd<-paste(" =", round(r2,3))
 text((max(xfit)-min(xfit))*0.2+min(xfit),
@@ -113,7 +115,7 @@ abline(a=-trouttmp$pars[1]/trouttmp$pars[3], b=-trouttmp$pars[2]/trouttmp$pars[3
 put.fig.letter("D.", location = "topleft", offset=c(0.2, -0.05), cex=1.5)
 
 plot(xfit, zfit,
-     col=1,
+     col=collstfg[as.numeric(as.factor(as.character(tradeoffdat$fg[kp])))],
      pch=c(0:2, 5, 15:18)[as.numeric(as.factor(as.character(tradeoffdat$fg[kp])))+as.numeric(tradeoffdat$ine120[kp])*4],
      lwd=1,
      xlab="",
@@ -129,7 +131,7 @@ axis(1, -log10(sqx), sqx)
 axis(2, logit(sqz), sqz)
 box()
 trouttmp<-nondirfit(data.frame(xfit, zfit))
-r2=trouttmp$rsq$rsq_est_adj
+r2=suppressMessages(lmodel2(xfit~zfit, range.y = "interval", range.x="interval")$rsquare)
 r<-"R"
 rd<-paste(" =", round(r2,3))
 text((max(xfit)-min(xfit))*0.2+min(xfit),
@@ -139,7 +141,7 @@ abline(a=-trouttmp$pars[1]/trouttmp$pars[2], b=-trouttmp$pars[3]/trouttmp$pars[2
 put.fig.letter("E.", location = "topleft", offset=c(0.2, -0.05), cex=1.5)
 
 plot(zfit, yfit,
-     col=1,
+     col=collstfg[as.numeric(as.factor(as.character(tradeoffdat$fg[kp])))],
      pch=c(0:2, 5, 15:18)[as.numeric(as.factor(as.character(tradeoffdat$fg[kp])))+as.numeric(tradeoffdat$ine120[kp])*4],
      lwd=1,
      xlab="",
@@ -153,7 +155,7 @@ axis(1, logit(sqz), sqz)
 axis(2, log10(sqy), sqy)
 box()
 trouttmp<-nondirfit(data.frame(zfit, yfit))
-r2=trouttmp$rsq$rsq_est_adj
+r2=suppressMessages(lmodel2(zfit~yfit, range.y = "interval", range.x="interval")$rsquare)
 r<-"R"
 rd<-paste(" =", round(r2,3))
 text((max(zfit)-min(zfit))*0.2+min(zfit),

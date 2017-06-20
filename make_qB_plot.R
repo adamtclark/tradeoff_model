@@ -1,7 +1,7 @@
 #Make qB vs. R* plot
 yz<-log10(ilogit(z)*10^(y))
 plot(-x, yz,
-     col=1,
+     col=collstfg[as.numeric(as.factor(as.character(tradeoffdat$fg[kp])))],
      pch=c(0:2, 5, 15:18)[as.numeric(as.factor(as.character(tradeoffdat$fg[kp])))+as.numeric(tradeoffdat$ine120[kp])*4],
      lwd=1,
      xlab="",
@@ -18,7 +18,7 @@ axis(1, -log10(sqx), sqx)
 axis(2, log10(sqy), sqy)
 box()
 trouttmp<-nondirfit(data.frame(-x, yz))
-r2=trouttmp$rsq$rsq_est_adj
+r2=suppressMessages(lmodel2(-x~yz, range.y = "interval", range.x="interval")$rsquare)
 r<-"R"
 rd<-paste(" =", round(r2,3))
 text((max(-x)-min(-x))*0.2+min(-x),

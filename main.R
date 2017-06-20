@@ -51,7 +51,7 @@ dev.off()
 ############################################################
 #Plot bi-variate relationships
 ############################################################
-pdf("figures/FigureS2_bivariate_plots.pdf",width=6, height=6, colormodel = "cmyk", useDingbats = FALSE)
+pdf("figures/FigureS2_bivariate_plots.pdf",width=6, height=7, colormodel = "cmyk", useDingbats = FALSE)
   m2<-cbind(c(1,2,3,7), c(4,5,6,7))
   layout(m2)
   par(mar=c(3,3,2,2), oma=c(1,1,0,0))
