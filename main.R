@@ -154,9 +154,20 @@ alter_probability<-0.8
 source("run_simulations_altered.R")
 datout_alteredlst[[2]]<-datout_altered
 
+#Early season
+lowerdlim<-2 #revert Poapr to monoculture biomass up to which diversity level?
+alter_whichspecies<-rev(which(splst%in%c("Poapr")))
+alter_whichno3<-(1:length(splst))
+alter_whichrichness<-c(4,8,16)
+alter_probability<-1/3
+
+source("run_simulations_altered.R")
+datout_alteredlst[[3]]<-datout_altered
+
 #make plots
 datout_altered_andge<-datout_alteredlst[[1]]
 datout_altered_luppe<-datout_alteredlst[[2]]
+datout_altered_early<-datout_alteredlst[[3]]
 
 pdf("figures/FigureS4_augmented_models.pdf", width=10, height=8, colormodel = "cmyk", useDingbats = FALSE)
   source("plot_adjustments.R")

@@ -221,6 +221,7 @@ points(ag_new$est[subs,1], ag_new$obs[subs,1], pch=13, lwd=0.8)
 text(ul, bl1, paste("MAE =", round(10^mean(tmp1$res)-1, 2)), adj=c(0,0), cex=1.2)
 text(ul, bl2, paste("p <", ceiling(pv*1000)/1000), adj=c(0,0), cex=1.2)
 
+
 ############################################################
 #Early season
 ############################################################
@@ -263,6 +264,13 @@ bl1<-10^((log10(lims[2])-log10(lims[1]))*0.125+log10(lims[1]))
 bl2<-10^((log10(lims[2])-log10(lims[1]))*0.02+log10(lims[1]))
 
 #get p-values
+datout_altered_early<-datoutlst[[2]] #With intrasp. variation
+datout_old<-datoutlst[[4]] #Without intrasp. variation
+includesp<-c("Achmi", "Poapr")
+
+datout_altered_early$obs[datout_altered_early$obs<replacelower]<-replacelower
+datout_altered_early$est[datout_altered_early$est<replacelower]<-replacelower
+
 datout_altered_early$obs[datout_altered_early$obs<replacelower | !is.finite(datout_altered_early$obs)]<-replacelower
 datout_altered_early$est[datout_altered_early$est<replacelower | !is.finite(datout_altered_early$est)]<-replacelower
 
