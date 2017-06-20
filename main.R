@@ -26,7 +26,7 @@ ssoutlst<-NULL #list for output total data
 
 #set preferences
 bootr2<-TRUE #get bootstrapped estimates for R2?
-dotradeofftest<-"saved" #get p-values for tradeoff slopes. Value "saved" loads an existing file; value "TRUE" re-runs
+dotradeofftest<-TRUE #get p-values for tradeoff slopes. Value "saved" loads an existing file; value "TRUE" re-runs
 
 #simulation options
 centermeans<-TRUE #center to true E120 monoculture means?
