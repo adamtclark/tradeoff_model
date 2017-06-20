@@ -70,6 +70,9 @@ source("run_simulations.R")
 #save.image("data/data_products/simulated_results.RData") #save output for long simulations
 #load("data/data_products/simulated_results.RData")
 
+#run trait regressions
+source("run_trait_regressions.R")
+
 ############################################################
 # plot outputs
 ############################################################
