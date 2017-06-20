@@ -64,11 +64,8 @@ dev.off()
 # run simulations
 ############################################################
 source("run_simulations.R")
-#save.image("data/data_products/simulated_results_coex.RData") #save output for long simulations
+save.image("data/data_products/simulated_results_coex.RData") #save output for long simulations
 #load("data/data_products/simulated_results_coex.RData") #save output for long simulations
-
-#save.image("data/data_products/simulated_results.RData") #save output for long simulations
-#load("data/data_products/simulated_results.RData")
 
 #run trait regressions (this creates Table1)
 source("run_trait_regressions.R")
@@ -118,8 +115,8 @@ dev.off()
 pdf("figures/Figure5_simulated_community.pdf", width=8, height=4, colormodel = "cmyk", useDingbats = FALSE)
   source("simulate_communities.R")
 dev.off()
-#save.image("data/data_products/simulated_results_simulated.RData") #save output for long simulations
-#load("data/data_products/simulated_results_simulated.RData") #load output for long simulations
+save.image("data/data_products/simulated_results_simulated_coex.RData") #save output for long simulations
+#load("data/data_products/simulated_results_simulated_coex.RData") #load output for long simulations
 
 ############################################################
 # output supplementary tables
@@ -172,4 +169,5 @@ if(exists("cl")) {
   stopCluster(cl)
 }
 
-#save.image("data/data_products/simulated_results_altered.RData") #save output for long simulations
+save.image("data/data_products/simulated_results_altered_coex.RData") #save output for long simulations
+#load("data/data_products/simulated_results_altered_coex.RData") #load output for long simulations
