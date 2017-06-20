@@ -46,7 +46,7 @@ for(iternumber in 1:4) {
 
 
 #plot
-collst<-c("darkgrey", "black")
+collst<-c("red", "blue")
 adj<-c(-0.325, 0.1625, -0.1625, 0.325, 0)
 srichlst<-c(2,4,8,16)
 pvallevels<-c(0.1, 0.05, 0.01, 0.001)
@@ -69,17 +69,17 @@ for(plti in 1:2) {
   sppos<-5
   colpos<-2
   
-  segments(1:4+adj[sppos], richmat_obs[,4], 1:4+adj[sppos], richmat_obs[,5], lwd=3.5, lend=2, col=collst[colpos])
-  segments(1:4+adj[sppos], richmat_obs[,2], 1:4+adj[sppos], richmat_obs[,3], lwd=5, lend=2, col=collst[colpos])
-  segments(1:4+adj[sppos]-0.05, richmat_obs[,1], 1:4+adj[sppos]+0.05, richmat_obs[,1], lwd=5, lend=2, col=collst[colpos])
+  segments(1:4+adj[sppos], richmat_obs[,4], 1:4+adj[sppos], richmat_obs[,5], lwd=3.5, lend=2, col="black")
+  segments(1:4+adj[sppos], richmat_obs[,2], 1:4+adj[sppos], richmat_obs[,3], lwd=5, lend=2, col="black")
+  segments(1:4+adj[sppos]-0.05, richmat_obs[,1], 1:4+adj[sppos]+0.05, richmat_obs[,1], lwd=5, lend=2, col="black")
   
-  lines(1:4+adj[sppos], richmat_obs[,1], lwd=3.5, col=collst[colpos])
+  lines(1:4+adj[sppos], richmat_obs[,1], lwd=3.5, col="black")
   
-  segments(1:4+adj[sppos], richmat_obs[,4], 1:4+adj[sppos], richmat_obs[,5], lwd=1, lend=2, col="white")
-  segments(1:4+adj[sppos], richmat_obs[,2], 1:4+adj[sppos], richmat_obs[,3], lwd=2, lend=2, col="white")
-  segments(1:4+adj[sppos]-0.05, richmat_obs[,1], 1:4+adj[sppos]+0.05, richmat_obs[,1], lwd=2, lend=2, col="white")
+  segments(1:4+adj[sppos], richmat_obs[,4], 1:4+adj[sppos], richmat_obs[,5], lwd=1, lend=2, col="black")
+  segments(1:4+adj[sppos], richmat_obs[,2], 1:4+adj[sppos], richmat_obs[,3], lwd=2, lend=2, col="black")
+  segments(1:4+adj[sppos]-0.05, richmat_obs[,1], 1:4+adj[sppos]+0.05, richmat_obs[,1], lwd=2, lend=2, col="black")
   
-  lines(1:4+adj[sppos], richmat_obs[,1], lwd=1, col="white")
+  lines(1:4+adj[sppos], richmat_obs[,1], lwd=1, col="black")
   
   #est
   clst<-rbind(c(3,4), c(1,2))
