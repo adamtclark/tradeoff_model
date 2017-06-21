@@ -101,13 +101,8 @@ spcoexdatsave<-spcoexdat
 
 
 #plot
-m<-rbind(c(1,1),
-         c(1,1),
-         c(2,3),
-         c(4,5))
-layout(m)
 ofs1<-c(0.022, -0.06)
-ofs2<-c(0.055, -0.02)
+
 
 coexdat<-coexdatsave
 coexdat[,1:3]<-logit(unlist(coexdat[,1:3]))
@@ -118,7 +113,7 @@ yrng<-range(coexdat[,1:3])
 collst_tr<-adjustcolor(c("black", "red", "blue"), alpha.f = 0.8)
 
 
-par(mar=c(4,2,2,2), oma=c(2,3,0,0))
+par(mfrow=c(1,1), mar=c(4,2,2,1), oma=c(0,4,0,0))
 plot(c(0.6, length(sprichlst)+0.4), yrng, xlab="", ylab="", type="n", axes=F, cex.lab=1.2)
 axis(1, at=1:length(sprichlst), sprichlst)
 ax2lst<-c(0.6, 0.8, 0.9, 0.95, 0.99, 0.999)
@@ -129,7 +124,7 @@ abline(h=ax2lst_ps, col=adjustcolor("black", 0.2))
 box()
 
 mtext("Planted Richness", 1, cex=1.2, line=2.4)
-mtext("Frequency of Stable Coexistence", 2, cex=1.2, line=1.2, outer=T)
+mtext("Frequency of Stable Coexistence", 2, cex=1.2, line=2, outer=T)
 
 psq<-c(-0.26, 0, 0.26)
 dsq<-0.12
@@ -163,67 +158,4 @@ for(i in 1:length(sprichlst)) {
   #         unlist(coexdat[pstmp,][3,1:3]),
   #         lwd=3, lend=2)
 }
-put.fig.letter("A.", "topleft", offset=ofs1, cex=1.4)
 
-par(mar=c(2,2,1,1))
-spcoexdat<-spcoexdatsave
-spnumnames<-c("2 Species Mixtures",
-              "4 Species Mixtures",
-              "8 Species Mixtures",
-              "16 Species Mixtures")
-
-dsq<-c(0, 0.02, -0.02)
-
-collst_tr2<-adjustcolor(c("black", "red", "blue"), alpha.f = 0.9)
-
-
-for(i in 1:length(sprichlst)) {
-  sbs<-which(spcoexdat$plsr==sprichlst[i])
-  
-  plot(1-pzero_notr.3~I(qB_notr+dsq[1]), data=spcoexdat[sbs,][order(spcoexdat[sbs,]$qB_notr),], type="b", col=collst_tr[2],
-       xlab="", ylab="", ylim=c(0,1), lwd=1.5, cex=0.5)
-  
-  segments(spcoexdat[sbs,]$qB_notr+dsq[1],
-           1-spcoexdat[sbs,]$pzero_notr.1,
-           spcoexdat[sbs,]$qB_notr+dsq[1],
-           1-spcoexdat[sbs,]$pzero_notr.5, lwd=1.2, lend=2, col=collst_tr[2])
-  
-  segments(spcoexdat[sbs,]$qB_notr+dsq[1],
-           1-spcoexdat[sbs,]$pzero_notr.2,
-           spcoexdat[sbs,]$qB_notr+dsq[1],
-           1-spcoexdat[sbs,]$pzero_notr.4, lwd=2.2, lend=2, col=collst_tr2[2])
-  
-  lines(1-pzero_tr.3~I(qB_notr+dsq[2]), data=spcoexdat[sbs,][order(spcoexdat[sbs,]$qB_tr),], type="b", col=collst_tr[3], lwd=1.5, cex=0.5)
-  
-  segments(spcoexdat[sbs,]$qB_notr+dsq[2],
-           1-spcoexdat[sbs,]$pzero_tr.1,
-           spcoexdat[sbs,]$qB_notr+dsq[2],
-           1-spcoexdat[sbs,]$pzero_tr.5, lwd=1.2, lend=2, col=collst_tr[3])
-  
-  segments(spcoexdat[sbs,]$qB_notr+dsq[2],
-           1-spcoexdat[sbs,]$pzero_tr.2,
-           spcoexdat[sbs,]$qB_notr+dsq[2],
-           1-spcoexdat[sbs,]$pzero_tr.4, lwd=2.2, lend=2, col=collst_tr2[3])
-  
-  
-  
-  lines(pzero_obs.3~I(qB_notr+dsq[3]), data=spcoexdat[sbs,][order(spcoexdat[sbs,]$qB_tr),], type="b", col=collst_tr[1], lwd=1.5, cex=0.5)
-  
-  segments(spcoexdat[sbs,]$qB_notr+dsq[3],
-           spcoexdat[sbs,]$pzero_obs.1,
-           spcoexdat[sbs,]$qB_notr+dsq[3],
-           spcoexdat[sbs,]$pzero_obs.5, lwd=1.2, lend=2, col=collst_tr[1])
-  
-  segments(spcoexdat[sbs,]$qB_notr+dsq[3],
-           spcoexdat[sbs,]$pzero_obs.2,
-           spcoexdat[sbs,]$qB_notr+dsq[3],
-           spcoexdat[sbs,]$pzero_obs.4, lwd=2.2, lend=2, col=collst_tr2[1])
-  
-  text((max(spcoexdat[sbs,]$qB_notr)-min(spcoexdat[sbs,]$qB_notr))*0.7+min(spcoexdat[sbs,]$qB_notr),
-       0.2,
-       spnumnames[i], cex=1.3)
-  put.fig.letter(paste(LETTERS[i+1], ".", sep=""), "topleft", offset=ofs2, cex=1.4)
-  
-}
-
-mtext(expression(paste(italic("qB"), "*"[italic(mono)], ", g m"^-1, sep="")), 1, cex=1.2, outer=T, line=0.9)

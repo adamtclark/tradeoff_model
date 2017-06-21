@@ -26,7 +26,7 @@ ssoutlst<-NULL #list for output total data
 
 #set preferences
 bootr2<-TRUE #get bootstrapped estimates for R2?
-dotradeofftest<-TRUE #get p-values for tradeoff slopes. Value "saved" loads an existing file; value "TRUE" re-runs
+dotradeofftest<-"saved" #get p-values for tradeoff slopes. Value "saved" loads an existing file; value "TRUE" re-runs
 
 #simulation options
 centermeans<-TRUE #center to true E120 monoculture means?
@@ -51,7 +51,7 @@ dev.off()
 ############################################################
 #Plot bi-variate relationships
 ############################################################
-pdf("figures/FigureS2_bivariate_plots.pdf",width=6, height=7, colormodel = "cmyk", useDingbats = FALSE)
+pdf("figures/FigureS3_bivariate_plots.pdf",width=6, height=7, colormodel = "cmyk", useDingbats = FALSE)
   m2<-cbind(c(1,2,3,7), c(4,5,6,7))
   layout(m2)
   par(mar=c(3,3,2,2), oma=c(1,1,0,0))
@@ -64,7 +64,7 @@ dev.off()
 # run simulations
 ############################################################
 source("run_simulations.R")
-save.image("data/data_products/simulated_results_coex.RData") #save output for long simulations
+#save.image("data/data_products/simulated_results_coex.RData") #save output for long simulations
 #load("data/data_products/simulated_results_coex.RData") #save output for long simulations
 
 #run trait regressions (this creates Table1)
@@ -74,8 +74,12 @@ source("run_trait_regressions.R")
 # plot outputs
 ############################################################
 #plot coexistence
-pdf("figures/Figure3_coexistence_predictions.pdf", width=6, height=5, colormodel = "cmyk", useDingbats = FALSE)
+pdf("figures/Figure3_coexistence_predictions.pdf", width=6, height=3, colormodel = "cmyk", useDingbats = FALSE)
   source("plot_coexistence.R")
+dev.off()
+
+pdf("figures/FigureS2_specieswise_coexistence_predictions.pdf", width=12, height=5, colormodel = "cmyk", useDingbats = FALSE)
+  source("plot_coexistence_specieswise.R")
 dev.off()
 
 
@@ -99,7 +103,7 @@ pdf("figures/Figure4_fit_figure.pdf", width=8, height=9, colormodel = "cmyk", us
   mtext("Total Plot-Level Aboveground Biomass", 1, line=-64, cex=1, outer=T, adj=1-adj)
 dev.off()
 
-pdf("figures/FigureS3_intraspecific_varaition.pdf", width=8, height=4, colormodel = "cmyk", useDingbats = FALSE)
+pdf("figures/FigureS4_intraspecific_varaition.pdf", width=8, height=4, colormodel = "cmyk", useDingbats = FALSE)
   par(mfrow=c(1,2), oma=c(1,1,1,0), mar=c(3,3,2,1))
   source("get_richness_metrics.R") #observed vs. sampled diversity
   mtext("Sample Richness", 2, line=-0.5, cex=1.5, outer=T)
@@ -115,7 +119,7 @@ dev.off()
 pdf("figures/Figure5_simulated_community.pdf", width=8, height=4, colormodel = "cmyk", useDingbats = FALSE)
   source("simulate_communities.R")
 dev.off()
-save.image("data/data_products/simulated_results_simulated_coex.RData") #save output for long simulations
+#save.image("data/data_products/simulated_results_simulated_coex.RData") #save output for long simulations
 #load("data/data_products/simulated_results_simulated_coex.RData") #load output for long simulations
 
 ############################################################
@@ -169,7 +173,7 @@ datout_altered_andge<-datout_alteredlst[[1]]
 datout_altered_luppe<-datout_alteredlst[[2]]
 datout_altered_early<-datout_alteredlst[[3]]
 
-pdf("figures/FigureS4_augmented_models.pdf", width=10, height=8, colormodel = "cmyk", useDingbats = FALSE)
+pdf("figures/FigureS5_augmented_models.pdf", width=10, height=8, colormodel = "cmyk", useDingbats = FALSE)
   source("plot_adjustments.R")
 dev.off()
 
@@ -180,5 +184,5 @@ if(exists("cl")) {
   stopCluster(cl)
 }
 
-save.image("data/data_products/simulated_results_altered_coex.RData") #save output for long simulations
+#save.image("data/data_products/simulated_results_altered_coex.RData") #save output for long simulations
 #load("data/data_products/simulated_results_altered_coex.RData") #load output for long simulations
