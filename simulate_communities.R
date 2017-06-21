@@ -217,22 +217,22 @@ plot(snums, smdat$plottot, col="blue", lwd=2, ylim=c(50, 225),
 abline(h=seq(0, 250, by=25), v=snums, col="lightgrey")
 axis(2, at=c(50, 75, 100, 150, 200), cex.axis=1.5); axis(1, at=snums, c(1, 2, 4, 8, 16), cex.axis=1.5); box()
 
-lines(p1, obsdat$obs, col="black", lwd=4)
-lines(p1, obsdat$obs, col="black", lwd=2)
+lines(p1, obsdat$obs, col=adjustcolor("black", alpha.f = 0.7), lwd=3)
+#lines(p1, obsdat$obs, col=adjustcolor("black", alpha.f = 0.7), lwd=2)
 put.fig.letter(label = "A.", location = "topleft", cex=2, x=0.04, y=0.97)
 
 
 hi<-10^(log10(obsdat$obs)+obsdatsd$obs/sqrt(obsdatsd_n$obs))
 lw<-10^(log10(obsdat$obs)-obsdatsd$obs/sqrt(obsdatsd_n$obs))
-segments(p1, hi, p1, lw, lwd=4, lend=2)
-segments(p1, hi, p1, lw, lwd=2, col="black", lend=2)
-lines(p1, obsdat$obs, col="black", lwd=2)
+#segments(p1, hi, p1, lw, lwd=4, lend=2)
+segments(p1, hi, p1, lw, col=adjustcolor("black", alpha.f = 0.7), lend=2, lwd=3)
+#lines(p1, obsdat$obs, col=adjustcolor("black", alpha.f = 0.7), lwd=2)
 
-lines(p2, (smdat$plottot), col="blue", lwd=3)
+lines(p2, (smdat$plottot), col=adjustcolor("blue", alpha.f = 0.7), lwd=3)
 
 hi<-10^(log10(smdat$plottot)+smdatsd$plottot/sqrt(obsdatsd_n$obs))
 lw<-10^(log10(smdat$plottot)-smdatsd$plottot/sqrt(obsdatsd_n$obs))
-segments(p2, hi, p2, lw, lwd=3, lend=2, col="blue")
+segments(p2, hi, p2, lw, lwd=3, lend=2, col=adjustcolor("blue", alpha.f = 0.7))
 
 #Calculate and plot R-squared/p-values
 if(printr2) {
@@ -324,7 +324,7 @@ for(i in c(2,4,8,16)) {
   lw[lw==0 & (1:length(lw))>i]<-NA
   
   sbS<-is.finite(log(hi))&is.finite(log(lw))
-  polygon(c(spxseq[sbS], rev(spxseq[sbS])), c(hi[sbS], rev(lw[sbS])), col=adjustcolor("blue", alpha.f = 0.8), border=1)
+  polygon(c(spxseq[sbS], rev(spxseq[sbS])), c(hi[sbS], rev(lw[sbS])), col=adjustcolor("blue", alpha.f = 0.7), border=1)
   
   #observed
   hi<-abund_obs[3,]+(abund_obs[4,]-abund_obs[3,])/sqrt(obsdatsd_n$obs[obsdatsd_n$sr==i])
@@ -333,7 +333,7 @@ for(i in c(2,4,8,16)) {
   lw[lw==0 & (1:length(lw))>i]<-NA
   
   sbO<-is.finite(log(hi))&is.finite(log(lw))
-  polygon(c(spxseq[sbO], rev(spxseq[sbO])), c(hi[sbO], rev(lw[sbO])), col=adjustcolor("black", alpha.f = 0.8), border="black")
+  polygon(c(spxseq[sbO], rev(spxseq[sbO])), c(hi[sbO], rev(lw[sbO])), col=adjustcolor("black", alpha.f = 0.7), border="black")
   
   #Calculate and plot R-squared/p-values
   if(printr2) {
