@@ -229,7 +229,7 @@ agmondatall<-with(dattot,
                   aggregate(cbind(no3=no3, abvbiomass=abvbiomass, totaln=totaln), list(monoculture=monoculture, exp=exp, plot=plot, subplot=subplot, month=month),
                             function(x) exp(mean(log(x[is.finite(log(x))])))))
 
-subs<-which(agmondatall$monoculture%in%c("Poa pratensis", "Achillea millefolium(lanulosa)", "Liatris aspera"))
+subs<-which(agmondatall$monoculture%in%c("Poa pratensis", "Liatris aspera"))
 agmondatall<-agmondatall[subs,]
 
 plot(c(5.5, 8.5), c(15, 170), type="n", xlab="", ylab="", axes=F, log="y")
@@ -257,7 +257,7 @@ mtext(expression(paste(italic("B"), "*"[mono],", g m"^-2, sep="")), side = 2, li
 
 #plot fit
 datout_old<-datoutlst[[2]] #no within-species variation
-includesp<-c("Poapr", "Achmi", "Liaas")
+includesp<-c("Poapr", "Liaas")
 
 lims<-c(0.1, 150)
 ul<-10^(log10(lims[1])+(log10(lims[2])-log10(lims[1]))*0.6)
