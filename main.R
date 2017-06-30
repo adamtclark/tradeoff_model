@@ -51,7 +51,7 @@ dev.off()
 ############################################################
 #Plot bi-variate relationships
 ############################################################
-pdf("figures/FigureS3_bivariate_plots.pdf",width=6, height=7, colormodel = "cmyk", useDingbats = FALSE)
+pdf("figures/FigureS2_bivariate_plots.pdf",width=6, height=7, colormodel = "cmyk", useDingbats = FALSE)
   m2<-cbind(c(1,2,3,7), c(4,5,6,7))
   layout(m2)
   par(mar=c(3,3,2,2), oma=c(1,1,0,0))
@@ -78,7 +78,7 @@ pdf("figures/Figure3_coexistence_predictions.pdf", width=6, height=3, colormodel
   source("plot_coexistence.R")
 dev.off()
 
-pdf("figures/FigureS2_specieswise_coexistence_predictions.pdf", width=12, height=5, colormodel = "cmyk", useDingbats = FALSE)
+pdf("figures/FigureS3_specieswise_coexistence_predictions.pdf", width=12, height=5, colormodel = "cmyk", useDingbats = FALSE)
   source("plot_coexistence_specieswise.R")
 dev.off()
 
