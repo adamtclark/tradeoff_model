@@ -1,5 +1,5 @@
 #!/usr/bin/env Rscript
-#setwd("~/Dropbox/ActiveWork/Projects/001_rescomp_thesis/tradeoff_model/")
+#setwd("~/Dropbox/Projects/001_rescomp_thesis/tradeoff_model/")
 rm(list=ls())
 
 ############################################################
