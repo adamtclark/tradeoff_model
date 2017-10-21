@@ -44,7 +44,7 @@ if(!exists("cl") & nrep_traits>1) {
 ############################################################
 #Make 3D tradeoff plot
 ############################################################
-pdf("figures/Figure2_tradeoff_surface_3D.pdf", width=6, height=6, colormodel = "cmyk", useDingbats = FALSE)
+pdf("figures/Figure1_tradeoff_surface_3D.pdf", width=6, height=6, colormodel = "cmyk", useDingbats = FALSE)
   source("make_3d_plot.R")
 dev.off()
 
@@ -74,7 +74,7 @@ source("run_trait_regressions.R")
 # plot outputs
 ############################################################
 #plot coexistence
-pdf("figures/Figure3_coexistence_predictions.pdf", width=6, height=3, colormodel = "cmyk", useDingbats = FALSE)
+pdf("figures/Figure2_coexistence_predictions.pdf", width=6, height=3, colormodel = "cmyk", useDingbats = FALSE)
   source("plot_coexistence.R")
 dev.off()
 
@@ -84,7 +84,7 @@ dev.off()
 
 
 #Get plots of prediction fits and CD
-pdf("figures/Figure4_fit_figure.pdf", width=8, height=9, colormodel = "cmyk", useDingbats = FALSE)
+pdf("figures/Figure3_fit_figure.pdf", width=8, height=9, colormodel = "cmyk", useDingbats = FALSE)
   source("aggregate_data.R") #observed vs. fitted
   source("get_rsquared_intervals.R") #MAE fit for biomass by diversity level
   
@@ -116,7 +116,7 @@ dev.off()
 ############################################################
 # simulate from tradeoff surface
 ############################################################
-pdf("figures/Figure5_simulated_community.pdf", width=8, height=4, colormodel = "cmyk", useDingbats = FALSE)
+pdf("figures/Figure4_simulated_community.pdf", width=8, height=4, colormodel = "cmyk", useDingbats = FALSE)
   source("simulate_communities.R")
 dev.off()
 #save.image("data/data_products/simulated_results_simulated_coex.RData") #save output for long simulations
